@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.cuukenn.openstudysource.e_admin.common.config.MyBatisPlusConfig

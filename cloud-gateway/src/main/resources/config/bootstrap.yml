@@ -1,0 +1,15 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: @project.name@
+  profiles:
+    active: @env@
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          lower-case-service-id: true
+          enabled: true
+          filters:
+            - StripPrefix=1
