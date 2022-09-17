@@ -32,11 +32,9 @@ x-admin
 ├── cloud-dependencies  //公共依赖全局版本控制
 ├── cloud-devtools      //开发工具
 ├── cloud-framework     //公共组件
+│       └── cloud-framework-core           //核心组件
 │       └── cloud-framework-auth           //认证组件
-│       └── cloud-framework-domain         //数据库支持组件
-│       └── cloud-framework-domain-mybatis //mybatis支持组件
-│       └── cloud-framework-dto            //传输对象组件
-│       └── cloud-framework-exception      //异常定义组件
+│       └── cloud-framework-entity-mybatis //mybatis支持组件
 ├── cloud-gateway       //网关[gateway.cloud.com]
 ├── cloud-auth-client   //OAuth客户端[client.auth.cloud.com:8080]
 ├── cloud-auth-server   //OAuth服务端[server.auth.cloud.com:8081]
