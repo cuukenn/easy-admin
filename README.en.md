@@ -32,20 +32,18 @@ Microservice background management system
 ```
 x-admin   
 ├── cloud-dependencies  //Public dependency on global version control
-├── cloud-devtools  //development tools
-├── cloud-framework  //public components
-│       └── cloud-framework-auth  //Authentication component
-│       └── cloud-framework-domain  //Database support components
-│       └── cloud-framework-domain-mybatis  //mybatis support components
-│       └── cloud-framework-dto  //Transfer object components
-│       └── cloud-framework-exception  //Exception definition component
+├── cloud-devtools      //development tools
+├── cloud-framework     //public components
+│       └── cloud-framework-core           //core component
+│       └── cloud-framework-auth           //Authentication component
+│       └── cloud-framework-entity-mybatis //mybatis support components
 ├── cloud-gateway  //gateway [gateway.cloud.com]
 ├── cloud-auth client  //OAuth client [client.auth.cloud.com:8080]
 ├── cloud-auth server  //OAuth server [server.auth.cloud.com:8081]
 ├── cloud-services  //Subservices collection
 │       └── user-service  //User service sub module
 │               └── user-client  //External API of user service
-│               └── user-app  //User service implementation [user.service.cloud.com:8090]
+│               └── user-app     //User service implementation [user.service.cloud.com:8090]
 ├──pom.xml  //project dependency
 ```
 
