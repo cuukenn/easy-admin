@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.cuukenn.openstudysource.cloud.common.DtoAutoConfiguration,\
+com.cuukenn.openstudysource.cloud.common.ExceptionAutoConfiguration

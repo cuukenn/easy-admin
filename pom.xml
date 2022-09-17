@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>cloud-dependencies</artifactId>
-        <groupId>com.cuukenn.openstudysource.e-admin</groupId>
+        <groupId>com.cuukenn.openstudysource.cloud</groupId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>cloud-dependencies/pom.xml</relativePath>
     </parent>
@@ -19,6 +19,7 @@
         <module>cloud-services</module>
         <module>cloud-gateway</module>
         <module>cloud-auth-server</module>
+        <module>cloud-auth-client</module>
     </modules>
     <properties>
         <!-- *************************maven基础配置*************************************-->
@@ -36,33 +37,23 @@
         <dependencies>
             <!--            framework-->
             <dependency>
-                <groupId>com.cuukenn.openstudysource.e-admin</groupId>
-                <artifactId>cloud-framework-dto</artifactId>
+                <groupId>com.cuukenn.openstudysource.cloud</groupId>
+                <artifactId>cloud-framework-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.cuukenn.openstudysource.e-admin</groupId>
-                <artifactId>cloud-framework-domain</artifactId>
+                <groupId>com.cuukenn.openstudysource.cloud</groupId>
+                <artifactId>cloud-framework-entity-mybatis</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.cuukenn.openstudysource.e-admin</groupId>
-                <artifactId>cloud-framework-domain-mybatis</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.cuukenn.openstudysource.e-admin</groupId>
-                <artifactId>cloud-framework-exception</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.cuukenn.openstudysource.e-admin</groupId>
-                <artifactId>cloud-framework-security</artifactId>
+                <groupId>com.cuukenn.openstudysource.cloud</groupId>
+                <artifactId>cloud-framework-auth</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--            services-->
             <dependency>
-                <groupId>com.cuukenn.openstudysource.e-admin</groupId>
+                <groupId>com.cuukenn.openstudysource.cloud</groupId>
                 <artifactId>user-client</artifactId>
                 <version>${project.version}</version>
             </dependency>

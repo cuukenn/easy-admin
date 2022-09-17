@@ -1,0 +1,5 @@
+server:
+    port: 8080
+sa-token:
+    cookie:
+        domain: admin.com

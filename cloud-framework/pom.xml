@@ -4,17 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>parent</artifactId>
-        <groupId>com.cuukenn.openstudysource.e-admin</groupId>
+        <groupId>com.cuukenn.openstudysource.cloud</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <artifactId>cloud-framework</artifactId>
     <modules>
-        <module>cloud-framework-dto</module>
-        <module>cloud-framework-domain</module>
-        <module>cloud-framework-domain-mybatis</module>
-        <module>cloud-framework-exception</module>
-        <module>cloud-framework-security</module>
+        <module>cloud-framework-core</module>
+        <module>cloud-framework-auth</module>
+        <module>cloud-framework-entity-mybatis</module>
     </modules>
 </project>
