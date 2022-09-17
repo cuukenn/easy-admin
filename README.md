@@ -55,6 +55,7 @@ x-admin
 
 ```
 # x-admin cloud host
+127.0.0.1 cloud.com
 127.0.0.1 gateway.cloud.com
 127.0.0.1 client.auth.cloud.com
 127.0.0.1 server.auth.cloud.com
