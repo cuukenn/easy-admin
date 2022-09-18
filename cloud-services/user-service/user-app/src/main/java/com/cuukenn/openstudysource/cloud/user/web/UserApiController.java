@@ -2,9 +2,9 @@ package com.cuukenn.openstudysource.cloud.user.web;
 
 import cn.dev33.satoken.annotation.SaCheckPermission;
 import cn.dev33.satoken.annotation.SaIgnore;
-import com.cuukenn.openstudysource.cloud.common.dto.PageQuery;
-import com.cuukenn.openstudysource.cloud.common.dto.PageResult;
-import com.cuukenn.openstudysource.cloud.common.dto.Result;
+import com.cuukenn.openstudysource.cloud.framework.dto.PageQuery;
+import com.cuukenn.openstudysource.cloud.framework.dto.PageResult;
+import com.cuukenn.openstudysource.cloud.framework.dto.Result;
 import com.cuukenn.openstudysource.cloud.user.api.IUserApi;
 import com.cuukenn.openstudysource.cloud.user.dto.ChangePasswordCommand;
 import com.cuukenn.openstudysource.cloud.user.dto.CheckPasswdCommand;
@@ -16,7 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
 import java.util.Collections;
 import java.util.List;
 

@@ -1,9 +1,9 @@
 package com.cuukenn.openstudysource.cloud.user.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.cuukenn.openstudysource.cloud.common.dto.IResult;
-import com.cuukenn.openstudysource.cloud.common.entity.AbstractMybatisEntity;
-import com.cuukenn.openstudysource.cloud.common.exception.BizException;
+import com.cuukenn.openstudysource.cloud.framework.dto.IResult;
+import com.cuukenn.openstudysource.cloud.framework.entity.AbstractMybatisEntity;
+import com.cuukenn.openstudysource.cloud.framework.exception.BizException;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

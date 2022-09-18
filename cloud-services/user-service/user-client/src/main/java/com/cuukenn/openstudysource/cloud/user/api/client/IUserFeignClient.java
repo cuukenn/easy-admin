@@ -1,6 +1,6 @@
 package com.cuukenn.openstudysource.cloud.user.api.client;
 
-import com.cuukenn.openstudysource.cloud.common.FeignClientConfiguration;
+import com.cuukenn.openstudysource.cloud.framework.FeignClientConfiguration;
 import com.cuukenn.openstudysource.cloud.user.api.IUserApi;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.cloud.openfeign.FeignClient;

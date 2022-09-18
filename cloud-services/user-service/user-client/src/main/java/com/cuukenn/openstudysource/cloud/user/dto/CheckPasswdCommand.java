@@ -1,6 +1,6 @@
 package com.cuukenn.openstudysource.cloud.user.dto;
 
-import com.cuukenn.openstudysource.cloud.common.dto.Command;
+import com.cuukenn.openstudysource.cloud.framework.dto.Command;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

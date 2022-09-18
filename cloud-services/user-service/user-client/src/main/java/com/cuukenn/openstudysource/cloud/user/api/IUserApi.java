@@ -1,8 +1,8 @@
 package com.cuukenn.openstudysource.cloud.user.api;
 
-import com.cuukenn.openstudysource.cloud.common.dto.PageQuery;
-import com.cuukenn.openstudysource.cloud.common.dto.PageResult;
-import com.cuukenn.openstudysource.cloud.common.dto.Result;
+import com.cuukenn.openstudysource.cloud.framework.dto.PageQuery;
+import com.cuukenn.openstudysource.cloud.framework.dto.PageResult;
+import com.cuukenn.openstudysource.cloud.framework.dto.Result;
 import com.cuukenn.openstudysource.cloud.user.dto.ChangePasswordCommand;
 import com.cuukenn.openstudysource.cloud.user.dto.CheckPasswdCommand;
 import com.cuukenn.openstudysource.cloud.user.dto.UpdateUserCommand;
