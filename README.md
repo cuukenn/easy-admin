@@ -7,23 +7,23 @@
 ###### 技术栈
 
 - 核心
-  - Spring cloud alibaba
-  - LoadBalance
-  - FeignClient
+    - Spring cloud alibaba
+    - LoadBalance
+    - FeignClient
 - 鉴权
-  - Sa-token
-  - OAuth
-  - IdToken
+    - Sa-token
+    - OAuth
+    - IdToken
 - 第三方工具
-  - HuTool
+    - HuTool
 
 ###### 架构
 
 - 四层架构(与三层架构相比多了一层[manage通用层](https://blog.csdn.net/qq_40542534/article/details/112467861))
-  - controller：api交互
-  - service：业务逻辑层
-  - manage：公共服务实现(传统三层中service中的业务逻辑抽到此层)
-  - dao：数据库层
+    - controller：api交互
+    - service：业务逻辑层
+    - manage：公共服务实现(传统三层中service中的业务逻辑抽到此层)
+    - dao：数据库层
 
 ###### 系统模块
 
@@ -61,6 +61,10 @@ x-admin
 127.0.0.1 server.auth.cloud.com
 127.0.0.1 user.service.cloud.com
 ```
+
+###### 访问地址
+
+- [本地API文档](http://gateway.cloud.com/webjars/swagger-ui/index.html)
 
 ###### Tips
 

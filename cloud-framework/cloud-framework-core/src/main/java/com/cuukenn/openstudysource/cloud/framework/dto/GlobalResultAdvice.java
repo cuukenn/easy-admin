@@ -19,7 +19,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 public class GlobalResultAdvice implements ResponseBodyAdvice<Object> {
     @Override
     public boolean supports(MethodParameter returnType, Class converterType) {
-        return true;
+        return !returnType.getDeclaringClass().getPackageName().startsWith("org.springdoc");
     }
 
     @Override

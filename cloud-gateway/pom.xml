@@ -50,6 +50,11 @@
             <groupId>com.cuukenn.openstudysource.cloud</groupId>
             <artifactId>user-client</artifactId>
         </dependency>
+        <!--        springdoc-->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-webflux-ui</artifactId>
+        </dependency>
         <!--        test-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -17,6 +17,7 @@
         <sa-token.version>1.31.0</sa-token.version>
         <junit.version>5.8.2</junit.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
+        <springdoc.version>1.6.11</springdoc.version>
     </properties>
     <!--依赖版本统一管理-->
     <dependencyManagement>
@@ -126,6 +127,22 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-pool2</artifactId>
                 <version>2.11.1</version>
+            </dependency>
+            <!--  springdoc-->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-webmvc-core</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-webflux-core</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-webflux-ui</artifactId>
+                <version>${springdoc.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
