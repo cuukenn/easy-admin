@@ -34,8 +34,7 @@ x-admin
 │       └── cloud-framework-auth           //认证组件
 │       └── cloud-framework-entity-mybatis //mybatis支持组件
 ├── cloud-gateway       //网关[gateway.cloud.com]
-├── cloud-auth-client   //OAuth客户端[client.auth.cloud.com:8080]
-├── cloud-auth-server   //OAuth服务端[server.auth.cloud.com:8081]
+├── cloud-service-auth  //认证服务[auth.cloud.com:8080]
 ├── cloud-services      //子服务集合
 │       └── user-service  //用户服务子模块
 │               └── user-client  //用户服务对外API
@@ -55,8 +54,7 @@ x-admin
 # x-admin cloud host
 127.0.0.1 cloud.com
 127.0.0.1 gateway.cloud.com
-127.0.0.1 client.auth.cloud.com
-127.0.0.1 server.auth.cloud.com
+127.0.0.1 auth.cloud.com
 127.0.0.1 user.service.cloud.com
 ```
 

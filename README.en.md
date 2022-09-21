@@ -36,8 +36,7 @@ x-admin
 │       └── cloud-framework-auth           //Authentication component
 │       └── cloud-framework-entity-mybatis //mybatis support components
 ├── cloud-gateway  //gateway [gateway.cloud.com]
-├── cloud-auth client  //OAuth client [client.auth.cloud.com:8080]
-├── cloud-auth server  //OAuth server [server.auth.cloud.com:8081]
+├── cloud-service-auth  //auth [auth.cloud.com:8080]
 ├── cloud-services  //Subservices collection
 │       └── user-service  //User service sub module
 │               └── user-client  //External API of user service
@@ -57,7 +56,7 @@ x-admin
 # x-admin cloud host
 127.0.0.1 cloud.com
 127.0.0.1 gateway.cloud.com
-127.0.0.1 client.auth.cloud.com
+127.0.0.1 auth.cloud.com
 127.0.0.1 server.auth.cloud.com
 127.0.0.1 user.service.cloud.com
 ```
