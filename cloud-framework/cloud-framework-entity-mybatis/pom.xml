@@ -24,8 +24,8 @@
             <version>${mybatis-plus.version}</version>
         </dependency>
         <dependency>
-            <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-core</artifactId>
+            <groupId>com.cuukenn.openstudysource.cloud</groupId>
+            <artifactId>cloud-framework-auth</artifactId>
         </dependency>
     </dependencies>
 </project>

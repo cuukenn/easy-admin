@@ -1,7 +1,7 @@
 package com.cuukenn.openstudysource.cloud.user.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.cuukenn.openstudysource.cloud.common.entity.AbstractMybatisEntity;
+import com.cuukenn.openstudysource.cloud.framework.entity.AbstractMybatisEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;

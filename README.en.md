@@ -7,15 +7,13 @@ Microservice background management system
 ###### Technology stack
 
 - Core
-  - Spring cloud alibaba
-  - LoadBalance
-  - FeignClient
+    - Spring cloud alibaba
+    - LoadBalance
+    - FeignClient
 - Authentication
-  - Sa-token
-  - OAuth
-  - IdToken
+    - SpringSecurity
 - Third party tools
-  - HuTool
+    - HuTool
 
 ###### Architecture
 

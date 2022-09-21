@@ -16,10 +16,9 @@
         <module>cloud-dependencies</module>
         <module>cloud-devtools</module>
         <module>cloud-framework</module>
-        <module>cloud-services</module>
         <module>cloud-gateway</module>
-        <module>cloud-auth-server</module>
-        <module>cloud-auth-client</module>
+        <module>cloud-service-auth</module>
+        <module>cloud-services</module>
     </modules>
     <properties>
         <!-- *************************maven基础配置*************************************-->
@@ -60,6 +59,13 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!-- lombok dependency should not end up on classpath -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -125,6 +131,32 @@
                 </excludes>
             </resource>
         </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${mapstruct.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${projectlombok.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok-mapstruct-binding</artifactId>
+                            <version>${projectlombok-binding.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
     <!--设置远程仓库地址为阿里云仓库-->
     <repositories>

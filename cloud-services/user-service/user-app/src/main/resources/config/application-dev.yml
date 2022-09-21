@@ -6,3 +6,6 @@ spring:
         hikari:
             minimum-idle: 10
             maximum-pool-size: 20
+springdoc:
+    api-docs:
+        enabled: true

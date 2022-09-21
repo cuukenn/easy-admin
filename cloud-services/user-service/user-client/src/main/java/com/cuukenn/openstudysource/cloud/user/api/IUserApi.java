@@ -1,14 +1,17 @@
 package com.cuukenn.openstudysource.cloud.user.api;
 
-import com.cuukenn.openstudysource.cloud.common.dto.PageQuery;
-import com.cuukenn.openstudysource.cloud.common.dto.PageResult;
-import com.cuukenn.openstudysource.cloud.common.dto.Result;
+import com.cuukenn.openstudysource.cloud.framework.dto.PageQuery;
+import com.cuukenn.openstudysource.cloud.framework.dto.PageResult;
+import com.cuukenn.openstudysource.cloud.framework.dto.Result;
+import com.cuukenn.openstudysource.cloud.user.dto.AuthUserDto;
 import com.cuukenn.openstudysource.cloud.user.dto.ChangePasswordCommand;
 import com.cuukenn.openstudysource.cloud.user.dto.CheckPasswdCommand;
+import com.cuukenn.openstudysource.cloud.user.dto.UpdatePasswordCommand;
 import com.cuukenn.openstudysource.cloud.user.dto.UpdateUserCommand;
 import com.cuukenn.openstudysource.cloud.user.dto.UserDto;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 /**
  * 用户查询服务
@@ -27,41 +29,21 @@ public interface IUserApi {
     String MAPPING = "/user";
 
     /**
-     * 检查账户密码是否正确
-     *
-     * @param command@return 用户数据
-     */
-    @PostMapping(value = "/get/password-auth")
-    UserDto passwordAuth(@Valid @NotNull @RequestBody CheckPasswdCommand command);
-
-    /**
      * 通过用户名查询指定用户
      *
      * @param username 用户名
      * @return userDto
      */
-    @GetMapping(value = "/get/username")
-    UserDto findUserByUsername(@RequestParam("username") String username);
+    @GetMapping(value = "/username/{username}")
+    AuthUserDto findUserByUsername(@PathVariable("username") String username);
 
     /**
-     * 获取用户权限列表
+     * 检查账户密码是否正确
      *
-     * @param loginId   id
-     * @param loginType type
-     * @return permission list
+     * @param command@return 用户数据
      */
-    @GetMapping(value = "/get/permission-list")
-    List<String> getPermissionList(@RequestParam("loginId") Object loginId, @RequestParam("loginType") String loginType);
-
-    /**
-     * 角色列表
-     *
-     * @param loginId   id
-     * @param loginType type
-     * @return role list
-     */
-    @GetMapping(value = "/get/role-list")
-    List<String> getRoleList(@RequestParam("loginId") Object loginId, @RequestParam("loginType") String loginType);
+    @PostMapping(value = "/password-auth")
+    UserDto passwordAuth(@Valid @NotNull @RequestBody CheckPasswdCommand command);
 
     /**
      * 分页查询用户
@@ -69,7 +51,7 @@ public interface IUserApi {
      * @param query 分页数据
      * @return 结果
      */
-    @GetMapping(value = "/get/list")
+    @GetMapping(value = "/list")
     PageResult<UserDto> listUser(@Valid PageQuery query);
 
     /**
@@ -79,7 +61,7 @@ public interface IUserApi {
      * @return 结果
      */
     @PostMapping(value = "/add")
-    Result<Void> addUser(@Valid @NotNull UserDto dto);
+    Result<Void> addUser(@Valid UserDto dto);
 
     /**
      * 更新用户数据
@@ -88,16 +70,16 @@ public interface IUserApi {
      * @return 结果
      */
     @PutMapping(value = "/update")
-    Result<Void> updateUser(@Valid @NotNull UpdateUserCommand command);
+    Result<Void> updateUser(@Valid UpdateUserCommand command);
 
     /**
-     * 添加用户
+     * 删除用户
      *
      * @param uid 用户ID
      * @return 结果
      */
     @DeleteMapping(value = "/delete")
-    Result<Void> deleteUser(@Valid @RequestParam("uid") @NotNull Long uid);
+    Result<Void> deleteUser(@Valid @NotNull @RequestParam("uid") Long uid);
 
     /**
      * 重置用户密码
@@ -115,5 +97,14 @@ public interface IUserApi {
      * @return 结果
      */
     @PutMapping(value = "/update/password")
-    Result<Void> updatePassword(@Valid @RequestBody @NotNull ChangePasswordCommand command);
+    Result<Void> changePassword(@Valid @RequestBody ChangePasswordCommand command);
+
+    /**
+     * 更新用户密码(密码原始数据不更新，仅更新加密方式)
+     *
+     * @param command command
+     * @return 结果
+     */
+    @PutMapping(value = "/update/password/encryption-mode")
+    Result<Void> updatePassword(@Valid @RequestBody UpdatePasswordCommand command);
 }

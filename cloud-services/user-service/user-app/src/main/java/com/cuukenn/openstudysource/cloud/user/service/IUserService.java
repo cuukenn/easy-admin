@@ -1,9 +1,11 @@
 package com.cuukenn.openstudysource.cloud.user.service;
 
-import com.cuukenn.openstudysource.cloud.common.dto.PageQuery;
-import com.cuukenn.openstudysource.cloud.common.dto.PageResult;
+import com.cuukenn.openstudysource.cloud.framework.dto.PageQuery;
+import com.cuukenn.openstudysource.cloud.framework.dto.PageResult;
+import com.cuukenn.openstudysource.cloud.user.dto.AuthUserDto;
 import com.cuukenn.openstudysource.cloud.user.dto.ChangePasswordCommand;
 import com.cuukenn.openstudysource.cloud.user.dto.CheckPasswdCommand;
+import com.cuukenn.openstudysource.cloud.user.dto.UpdatePasswordCommand;
 import com.cuukenn.openstudysource.cloud.user.dto.UpdateUserCommand;
 import com.cuukenn.openstudysource.cloud.user.dto.UserDto;
 
@@ -54,7 +56,14 @@ public interface IUserService {
      *
      * @param command 修改动作
      */
-    void updatePassword(ChangePasswordCommand command);
+    void changePassword(ChangePasswordCommand command);
+
+    /**
+     * 更新密码(密码加密方式更新后同步更新，密码保持一致)
+     *
+     * @param command 修改动作
+     */
+    void updatePassword(UpdatePasswordCommand command);
 
     /**
      * 根据用户名查询用户
@@ -62,7 +71,7 @@ public interface IUserService {
      * @param username 用户名
      * @return 数据
      */
-    UserDto findByUsername(String username);
+    AuthUserDto findByUsername(String username);
 
     /**
      * 获取角色列表
