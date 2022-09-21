@@ -1,10 +1,10 @@
 package com.cuukenn.openstudysource.cloud.user.service;
 
-import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
+import com.cuukenn.openstudysource.cloud.framework.auth.util.SecurityUtil;
 import com.cuukenn.openstudysource.cloud.framework.dto.PageQuery;
 import com.cuukenn.openstudysource.cloud.framework.dto.PageResult;
 import com.cuukenn.openstudysource.cloud.framework.dto.ResultCode;
@@ -13,8 +13,10 @@ import com.cuukenn.openstudysource.cloud.user.converter.UserConverter;
 import com.cuukenn.openstudysource.cloud.user.dao.RoleRepository;
 import com.cuukenn.openstudysource.cloud.user.dao.UserRepository;
 import com.cuukenn.openstudysource.cloud.user.dao.UserRoleRepository;
+import com.cuukenn.openstudysource.cloud.user.dto.AuthUserDto;
 import com.cuukenn.openstudysource.cloud.user.dto.ChangePasswordCommand;
 import com.cuukenn.openstudysource.cloud.user.dto.CheckPasswdCommand;
+import com.cuukenn.openstudysource.cloud.user.dto.UpdatePasswordCommand;
 import com.cuukenn.openstudysource.cloud.user.dto.UpdateUserCommand;
 import com.cuukenn.openstudysource.cloud.user.dto.UserDto;
 import com.cuukenn.openstudysource.cloud.user.entity.Role;
@@ -88,7 +90,7 @@ public class DefaultUserServiceImpl implements IUserService {
 
     @Override
     public void updateUser(UpdateUserCommand command) {
-        log.info("update user,uid:{}", StpUtil.getLoginIdAsLong());
+        log.info("update user,uid:{}", -1L);
     }
 
     @Override
@@ -96,47 +98,66 @@ public class DefaultUserServiceImpl implements IUserService {
         if (uid == null) {
             return;
         }
-        final long currentUid = StpUtil.getLoginIdAsLong();
+        final String username = SecurityUtil.getCurrentUsername();
         boolean update = userRepository.update(null, Wrappers.lambdaUpdate(User.class)
             .set(User::getPassword, passwordEncoder.encode(DEFAULT_PASSWD))
-            .set(User::getLastModifiedBy, currentUid)
+            .set(User::getLastModifiedBy, username)
             .set(User::getLastModifiedTime, new Date())
-            .eq(User::getId, uid)
+            .eq(User::getUsername, username)
         );
         if (!update) {
             log.error("reset password failed");
             throw new BizException(new ResultCode.ResultCodeWrapper(-311, "reset password failed"));
         }
-        log.info("reset password for {} by {}", uid, currentUid);
+        log.info("reset password for {} by {}", uid, username);
     }
 
     @Override
-    public void updatePassword(ChangePasswordCommand command) {
+    public void changePassword(ChangePasswordCommand command) {
         if (command == null) {
             return;
         }
-        final long currentUid = StpUtil.getLoginIdAsLong();
+        final String username = SecurityUtil.getCurrentUsername();
         boolean update = userRepository.update(null, Wrappers.lambdaUpdate(User.class)
             .set(User::getPassword, passwordEncoder.encode(command.getNewPassword()))
-            .set(User::getLastModifiedBy, currentUid)
+            .set(User::getLastModifiedBy, username)
             .set(User::getLastModifiedTime, new Date())
             .eq(User::getPassword, passwordEncoder.encode(command.getOldPassword()))
-            .eq(User::getId, currentUid)
+            .eq(User::getUsername, username)
         );
         if (!update) {
-            log.error("update password failed:old password incorrect");
+            log.error("update password failed for {},old password incorrect", username);
             throw new BizException(new ResultCode.ResultCodeWrapper(-311, "old password error"));
         }
-        log.info("update password for {}", currentUid);
+        log.info("change password for {}", username);
     }
 
     @Override
-    public UserDto findByUsername(String username) {
+    public void updatePassword(UpdatePasswordCommand command) {
+        if (command == null) {
+            return;
+        }
+        final String username = SecurityUtil.getCurrentUsername();
+        boolean update = userRepository.update(null, Wrappers.lambdaUpdate(User.class)
+            .set(User::getPassword, command.getNewPassword())
+            .set(User::getLastModifiedBy, username)
+            .set(User::getLastModifiedTime, new Date())
+            .eq(User::getUsername, username)
+        );
+        if (!update) {
+            log.error("update password failed for {},username may not found", username);
+            throw new BizException(new ResultCode.ResultCodeWrapper(-311, "username may not found"));
+        }
+        log.info("update password for {}", username);
+    }
+
+    @Override
+    public AuthUserDto findByUsername(String username) {
         if (StrUtil.isBlank(username)) {
             log.warn("find-by-username with blank username");
             return null;
         }
-        return userConverter.toUserDto(userRepository.getOne(Wrappers.lambdaQuery(User.class).eq(User::getUsername, username)));
+        return userConverter.toAuthUserDto(userRepository.getOne(Wrappers.lambdaQuery(User.class).eq(User::getUsername, username)));
     }
 
     @Override

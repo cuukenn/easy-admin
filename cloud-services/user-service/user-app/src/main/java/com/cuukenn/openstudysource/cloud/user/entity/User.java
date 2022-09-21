@@ -48,7 +48,11 @@ public class User extends AbstractMybatisEntity {
     /**
      * 账户过期时间
      */
-    private Date invalidTime;
+    private Date accountInvalidTime;
+    /**
+     * 密码过期时间
+     */
+    private Date passwordInvalidTime;
     /**
      * 账户是否为管理员账户
      */
@@ -68,9 +72,13 @@ public class User extends AbstractMybatisEntity {
         if (Boolean.FALSE.equals(getEnabled())) {
             return AccountStatus.DISABLED;
         }
-        //是否过期
-        if (Boolean.TRUE.equals(isInvalid())) {
-            return AccountStatus.EXPIRE;
+        //账户是否过期
+        if (Boolean.TRUE.equals(isAccountInvalid())) {
+            return AccountStatus.ACCOUNT_EXPIRE;
+        }
+        //账户密码是否过期
+        if (Boolean.TRUE.equals(isPasswordInvalid())) {
+            return AccountStatus.PASSWORD_EXPIRE;
         }
         return AccountStatus.OK;
     }
@@ -103,11 +111,23 @@ public class User extends AbstractMybatisEntity {
      *
      * @return 账户是否过期
      */
-    private boolean isInvalid() {
-        if (invalidTime == null) {
+    public boolean isAccountInvalid() {
+        if (getAccountInvalidTime() == null) {
             return false;
         }
-        return invalidTime.before(new Date());
+        return getAccountInvalidTime().before(new Date());
+    }
+
+    /**
+     * 账户密码是否过期
+     *
+     * @return 账户密码是否过期
+     */
+    public boolean isPasswordInvalid() {
+        if (getPasswordInvalidTime() == null) {
+            return false;
+        }
+        return getPasswordInvalidTime().before(new Date());
     }
 
     @Getter
@@ -137,7 +157,11 @@ public class User extends AbstractMybatisEntity {
         /**
          * 账户过期
          */
-        EXPIRE(-303, "account invalid"),
+        ACCOUNT_EXPIRE(-303, "account invalid"),
+        /**
+         * 账户密码过期
+         */
+        PASSWORD_EXPIRE(-304, "account password invalid"),
         ;
         private final Integer code;
         private final String message;

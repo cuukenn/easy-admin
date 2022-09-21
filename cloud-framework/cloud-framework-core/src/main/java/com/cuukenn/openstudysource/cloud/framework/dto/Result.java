@@ -27,6 +27,15 @@ public class Result<T> implements IResult {
     }
 
     /**
+     * 成功
+     *
+     * @return ok status
+     */
+    public static <T> Result<T> success(T data) {
+        return new Result<>(ResultCode.SUCCESS, data);
+    }
+
+    /**
      * 失败
      *
      * @return failed status

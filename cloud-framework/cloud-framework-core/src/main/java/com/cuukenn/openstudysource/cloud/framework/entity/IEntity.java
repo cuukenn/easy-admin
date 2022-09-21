@@ -10,7 +10,7 @@ public interface IEntity extends Serializable {
     /**
      * 匿名用户
      */
-    String ANONYMOUS = "-1";
+    String ANONYMOUS = "anonymous";
     /**
      * ID物理主键
      */

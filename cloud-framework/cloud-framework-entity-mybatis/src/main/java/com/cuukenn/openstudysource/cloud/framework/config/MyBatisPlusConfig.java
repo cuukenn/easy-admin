@@ -1,12 +1,12 @@
 package com.cuukenn.openstudysource.cloud.framework.config;
 
-import cn.dev33.satoken.stp.StpUtil;
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.BlockAttackInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.IllegalSQLInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import com.cuukenn.openstudysource.cloud.framework.auth.util.SecurityUtil;
 import com.cuukenn.openstudysource.cloud.framework.entity.IEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
@@ -92,9 +92,9 @@ public class MyBatisPlusConfig {
      */
     private String getCurrentUser() {
         try {
-            return StpUtil.getLoginIdAsString();
+            return SecurityUtil.getCurrentUsername();
         } catch (RuntimeException e) {
-            log.error("get current user failed,its anonymous update,msg:{}", e.getMessage());
+            log.error("get current user failed,use default instead,msg:{}", e.getMessage());
         }
         return IEntity.ANONYMOUS;
     }
