@@ -44,6 +44,15 @@ public class Result<T> implements IResult {
         return new Result<>(ResultCode.ERROR, null);
     }
 
+    /**
+     * 失败
+     *
+     * @return ok status
+     */
+    public static <T> Result<T> failed(T data) {
+        return new Result<>(ResultCode.ERROR, data);
+    }
+
     public static Result<Void> build(IResult resultCode) {
         return new Result<>(resultCode, null);
     }
