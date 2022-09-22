@@ -1,5 +1,5 @@
 spring:
-    application:
-        name: @project.name@
-    profiles:
-        active: @env@
+  application:
+    name: @project.name@
+  profiles:
+    active: @env@

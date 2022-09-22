@@ -1,5 +1,6 @@
 package com.cuukenn.cloud.auth.web;
 
+import com.cuukenn.cloud.auth.security.SecurityConstant;
 import com.cuukenn.openstudysource.cloud.framework.dto.Result;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +38,7 @@ public class AuthorizationController {
     /**
      * @return login视图
      */
-    @RequestMapping("/login")
+    @RequestMapping(SecurityConstant.LOGIN_URL)
     public ModelAndView login(HttpServletRequest request, ModelAndView model) {
         Object exception = request.getSession().getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
         ModelMap modelMap = model.getModelMap();
@@ -47,7 +48,12 @@ public class AuthorizationController {
         } else {
             modelMap.addAttribute("error", "");
         }
-        modelMap.addAttribute("username", request.getParameter("username"));
+        modelMap.addAttribute("username", SecurityConstant.LOGIN_USERNAME_PARAM);
+        modelMap.addAttribute("password", SecurityConstant.LOGIN_PASSWORD_PARAM);
+        modelMap.addAttribute("captcha_id", SecurityConstant.LOGIN_CAPTCHA_ID_PARAM);
+        modelMap.addAttribute("captcha_code", SecurityConstant.LOGIN_CAPTCHA_CODE_PARAM);
+        modelMap.addAttribute("login_action", SecurityConstant.LOGIN_LOGIN_ACTION_PARAM);
+        modelMap.addAttribute("redirect_url", SecurityConstant.LOGIN_REDIRECT_URL_PARAM);
         model.setViewName("login");
         return model;
     }
