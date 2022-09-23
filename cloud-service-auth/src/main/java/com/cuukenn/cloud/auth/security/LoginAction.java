@@ -1,15 +1,8 @@
 package com.cuukenn.cloud.auth.security;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * @author changgg
  */
-@Getter
-@RequiredArgsConstructor
-@Slf4j
 public enum LoginAction {
     /**
      * 重定向
@@ -22,6 +15,11 @@ public enum LoginAction {
     private final int code;
     private final String desc;
 
+    LoginAction(int code, String desc) {
+        this.code = code;
+        this.desc = desc;
+    }
+
     public static LoginAction fromValue(String code) {
         if (code == null) {
             return LoginAction.JUST_RETURN;
@@ -32,5 +30,13 @@ public enum LoginAction {
             }
         }
         return LoginAction.JUST_RETURN;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public String getDesc() {
+        return desc;
     }
 }

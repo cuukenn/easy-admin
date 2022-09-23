@@ -1,10 +1,9 @@
 package com.cuukenn.cloud.auth.web;
 
-import com.cuukenn.cloud.auth.security.SecurityConstant;
+import com.cuukenn.openstudysource.cloud.framework.auth.SecurityConstant;
 import com.cuukenn.openstudysource.cloud.framework.dto.Result;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.access.annotation.Secured;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,9 +20,9 @@ import java.security.Principal;
  * @author changgg
  */
 @RestController
-@RequiredArgsConstructor
-@Slf4j
 public class AuthorizationController {
+    private static final Logger log = LoggerFactory.getLogger(AuthorizationController.class);
+
     /**
      * 获取当前用户信息
      *
@@ -68,11 +67,5 @@ public class AuthorizationController {
     @DeleteMapping("/logout")
     public Result<Void> logout(HttpServletRequest request, @RequestHeader("Authorization") String token) {
         return Result.success();
-    }
-
-    @GetMapping("/test001")
-    @Secured("admin")
-    public String test() {
-        return "test001";
     }
 }

@@ -5,25 +5,18 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 import java.util.Date;
 
 /**
  * @author changgg
  */
-@Data
-@EqualsAndHashCode(of = "id")
-@ToString
 public abstract class AbstractMybatisEntity implements ILogicDeleteEntity {
     private static final long serialVersionUID = -5132345367955693237L;
     /**
      * 主键
      */
     @TableId(value = ID, type = IdType.AUTO)
-    @ToString.Exclude
     private Long id;
     /**
      * 创建人
@@ -51,4 +44,58 @@ public abstract class AbstractMybatisEntity implements ILogicDeleteEntity {
     @TableField(value = IS_DELETED)
     @TableLogic(value = "false", delval = "true")
     private Boolean logicDeleted;
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    @Override
+    public String getLastModifiedBy() {
+        return lastModifiedBy;
+    }
+
+    public void setLastModifiedBy(String lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
+    }
+
+    @Override
+    public Date getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    @Override
+    public Date getLastModifiedTime() {
+        return lastModifiedTime;
+    }
+
+    public void setLastModifiedTime(Date lastModifiedTime) {
+        this.lastModifiedTime = lastModifiedTime;
+    }
+
+    @Override
+    public Boolean getLogicDeleted() {
+        return logicDeleted;
+    }
+
+    public void setLogicDeleted(Boolean logicDeleted) {
+        this.logicDeleted = logicDeleted;
+    }
 }

@@ -7,7 +7,7 @@
   <meta name="description" content="系统登录">
   <meta name="author" content="changgg">
   <title>系统登录</title>
-  <link rel="stylesheet" th:href="@{/css/main.css}">
+  <link rel="stylesheet" th:href="@{static/css/main.css}">
 </head>
 <style>
   .layout {
@@ -86,7 +86,7 @@
 </style>
 <body>
 <div class="layout">
-  <form class="form" action="/login" method="post" onsubmit="return check()">
+  <form class="form" action="login" method="post" onsubmit="return check()">
     <div>
       <h1>用户登录</h1>
     </div>
@@ -188,7 +188,7 @@
     initErrorMsg()
   }
   const getCaptchaCode = () => {
-    fetch(`/captcha/captchaCode?t=${new Date().getTime()}`, {
+    fetch(`captcha/captchaCode?t=${new Date().getTime()}`, {
       method: 'get'
     }).then(res => {
       if (res.ok) {

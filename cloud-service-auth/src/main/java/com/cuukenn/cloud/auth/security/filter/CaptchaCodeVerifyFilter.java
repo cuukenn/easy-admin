@@ -2,11 +2,9 @@ package com.cuukenn.cloud.auth.security.filter;
 
 import cn.hutool.json.JSONUtil;
 import com.cuukenn.cloud.auth.security.LoginAction;
-import com.cuukenn.cloud.auth.security.SecurityConstant;
 import com.cuukenn.cloud.auth.service.ICaptchaService;
+import com.cuukenn.openstudysource.cloud.framework.auth.SecurityConstant;
 import com.cuukenn.openstudysource.cloud.framework.dto.Result;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpStatus;
 import org.springframework.http.HttpMethod;
@@ -30,12 +28,14 @@ import java.util.Map;
 /**
  * @author changgg
  */
-@Slf4j
 @Component
-@RequiredArgsConstructor
 public class CaptchaCodeVerifyFilter extends OncePerRequestFilter {
     private final ICaptchaService captchaService;
     private final AuthenticationFailureHandler failureHandler = this.getAuthenticationFailureHandler();
+
+    public CaptchaCodeVerifyFilter(ICaptchaService captchaService) {
+        this.captchaService = captchaService;
+    }
 
     @SuppressWarnings("NullableProblems")
     @Override
@@ -78,7 +78,7 @@ public class CaptchaCodeVerifyFilter extends OncePerRequestFilter {
         captchaService.validate(id, code);
     }
 
-    static class ValidateCodeException extends AuthenticationException {
+    public static class ValidateCodeException extends AuthenticationException {
 
         private static final long serialVersionUID = -6231022868728842911L;
 

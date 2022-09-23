@@ -4,8 +4,6 @@ import cn.hutool.extra.spring.SpringUtil;
 import com.cuukenn.openstudysource.cloud.framework.auth.annotation.AnonymousAccess;
 import com.cuukenn.openstudysource.cloud.framework.auth.enums.RequestMethodEnum;
 import com.cuukenn.openstudysource.cloud.framework.exception.BizException;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,8 +24,9 @@ import java.util.Set;
 /**
  * @author changgg
  */
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class SecurityUtil {
+    private SecurityUtil() {
+    }
 
     /**
      * 获取当前登录的用户

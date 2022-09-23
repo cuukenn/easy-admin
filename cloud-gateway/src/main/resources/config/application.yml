@@ -1,3 +1,6 @@
+spring:
+  profiles:
+    active: '@env@'
 springdoc:
-    swagger-ui:
-        enabled: false
+  swagger-ui:
+    enabled: false

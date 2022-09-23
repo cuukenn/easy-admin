@@ -2,18 +2,12 @@ package com.cuukenn.openstudysource.cloud.framework.exception;
 
 import com.cuukenn.openstudysource.cloud.framework.dto.IResult;
 import com.cuukenn.openstudysource.cloud.framework.dto.ResultCode;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 /**
  * 业务异常
  *
  * @author changgg
  */
-@Data
-@EqualsAndHashCode(callSuper = true)
-@ToString
 public class BizException extends BaseException implements IResult {
     private static final long serialVersionUID = 6382548445433108669L;
     private final IResult codeResult;
@@ -31,5 +25,9 @@ public class BizException extends BaseException implements IResult {
     @Override
     public Integer getCode() {
         return codeResult.getCode();
+    }
+
+    public IResult getCodeResult() {
+        return codeResult;
     }
 }

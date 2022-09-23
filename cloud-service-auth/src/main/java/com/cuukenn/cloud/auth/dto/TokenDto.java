@@ -1,20 +1,10 @@
 package com.cuukenn.cloud.auth.dto;
 
 import com.cuukenn.openstudysource.cloud.framework.dto.Dto;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 
 /**
  * @author changgg
  */
-@RequiredArgsConstructor
-@Data
-@EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)
-@AllArgsConstructor
 public class TokenDto extends Dto {
     private static final long serialVersionUID = -3414509553446023554L;
     /**
@@ -29,4 +19,37 @@ public class TokenDto extends Dto {
      * 令牌
      */
     private String token;
+
+    public TokenDto() {
+    }
+
+    public TokenDto(String tokenHeaderName, String tokenPrefix, String token) {
+        this.tokenHeaderName = tokenHeaderName;
+        this.tokenPrefix = tokenPrefix;
+        this.token = token;
+    }
+
+    public String getTokenHeaderName() {
+        return tokenHeaderName;
+    }
+
+    public void setTokenHeaderName(String tokenHeaderName) {
+        this.tokenHeaderName = tokenHeaderName;
+    }
+
+    public String getTokenPrefix() {
+        return tokenPrefix;
+    }
+
+    public void setTokenPrefix(String tokenPrefix) {
+        this.tokenPrefix = tokenPrefix;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 }

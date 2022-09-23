@@ -22,8 +22,8 @@ import com.cuukenn.openstudysource.cloud.user.dto.UserDto;
 import com.cuukenn.openstudysource.cloud.user.entity.Role;
 import com.cuukenn.openstudysource.cloud.user.entity.User;
 import com.cuukenn.openstudysource.cloud.user.entity.associate.UserRole;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -38,15 +38,22 @@ import java.util.stream.Collectors;
  * @author changgg
  */
 @Service
-@Slf4j
-@RequiredArgsConstructor
 public class DefaultUserServiceImpl implements IUserService {
+    private static final Logger log = LoggerFactory.getLogger(DefaultUserServiceImpl.class);
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final UserRoleRepository userRoleRepository;
     private final UserConverter userConverter;
     private final String DEFAULT_PASSWD = "1234@Abcd";
+
+    public DefaultUserServiceImpl(PasswordEncoder passwordEncoder, UserRepository userRepository, RoleRepository roleRepository, UserRoleRepository userRoleRepository, UserConverter userConverter) {
+        this.passwordEncoder = passwordEncoder;
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.userRoleRepository = userRoleRepository;
+        this.userConverter = userConverter;
+    }
 
     @Override
     public PageResult<UserDto> list(PageQuery query) {

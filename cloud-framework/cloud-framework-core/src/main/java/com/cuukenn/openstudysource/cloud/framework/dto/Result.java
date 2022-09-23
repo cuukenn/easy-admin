@@ -1,17 +1,10 @@
 package com.cuukenn.openstudysource.cloud.framework.dto;
 
 import com.cuukenn.openstudysource.cloud.framework.exception.BizException;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  * @author changgg
  */
-@Data
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString
 public class Result<T> implements IResult {
     private Integer code;
     private String message;
@@ -74,5 +67,31 @@ public class Result<T> implements IResult {
         if (!getCode().equals(ResultCode.SUCCESS.getCode())) {
             throw new BizException(getCode(), getMessage());
         }
+    }
+
+    @Override
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
     }
 }

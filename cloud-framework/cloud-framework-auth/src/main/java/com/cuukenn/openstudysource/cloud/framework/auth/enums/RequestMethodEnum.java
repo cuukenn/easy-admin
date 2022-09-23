@@ -1,13 +1,8 @@
 package com.cuukenn.openstudysource.cloud.framework.auth.enums;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 /**
  * @author changgg
  **/
-@Getter
-@AllArgsConstructor
 public enum RequestMethodEnum {
     /**
      * 搜寻 @AnonymousGetMapping
@@ -38,6 +33,10 @@ public enum RequestMethodEnum {
      */
     private final String type;
 
+    RequestMethodEnum(String type) {
+        this.type = type;
+    }
+
     public static RequestMethodEnum find(String type) {
         for (RequestMethodEnum value : RequestMethodEnum.values()) {
             if (type.equals(value.getType())) {
@@ -45,5 +44,9 @@ public enum RequestMethodEnum {
             }
         }
         return ALL;
+    }
+
+    public String getType() {
+        return type;
     }
 }
