@@ -2,7 +2,8 @@ package com.cuukenn.openstudysource.cloud.framework.exception;
 
 import com.cuukenn.openstudysource.cloud.framework.dto.Result;
 import com.cuukenn.openstudysource.cloud.framework.dto.ResultCode;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,8 +18,9 @@ import javax.validation.ConstraintViolationException;
  * @author changgg
  */
 @RestControllerAdvice
-@Slf4j
 public final class GlobalExceptionAdvice {
+    private static final Logger log = LoggerFactory.getLogger(GlobalExceptionAdvice.class);
+
     /**
      * 业务异常
      *

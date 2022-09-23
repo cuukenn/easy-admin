@@ -31,23 +31,18 @@
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-bootstrap</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-webmvc-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.cuukenn.openstudysource.cloud</groupId>
+      <artifactId>cloud-framework-auth</artifactId>
+    </dependency>
     <!--        验证码-->
     <dependency>
       <groupId>com.github.whvcse</groupId>
       <artifactId>easy-captcha</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.cuukenn.openstudysource.cloud</groupId>
-      <artifactId>cloud-framework-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.cuukenn.openstudysource.cloud</groupId>
-      <artifactId>user-client</artifactId>
-    </dependency>
-    <!--      jwt support-->
-    <dependency>
-      <groupId>com.nimbusds</groupId>
-      <artifactId>nimbus-jose-jwt</artifactId>
     </dependency>
   </dependencies>
 </project>

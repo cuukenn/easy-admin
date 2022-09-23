@@ -1,7 +1,8 @@
 package com.cuukenn.openstudysource.cloud.gateway;
 
 import com.cuukenn.openstudysource.cloud.user.api.client.UserFeignClient;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springdoc.core.GroupedOpenApi;
 import org.springdoc.core.SwaggerUiConfigParameters;
 import org.springframework.beans.factory.ObjectProvider;
@@ -23,8 +24,9 @@ import java.util.List;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients(clients = {UserFeignClient.class})
-@Slf4j
 public class GatewayApplication {
+    private static final Logger log = LoggerFactory.getLogger(GatewayApplication.class);
+
     public static void main(String[] args) {
         SpringApplication.run(GatewayApplication.class, args);
     }

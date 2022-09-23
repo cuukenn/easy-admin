@@ -4,12 +4,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.cuukenn.openstudysource.cloud.framework.dto.IResult;
 import com.cuukenn.openstudysource.cloud.framework.entity.AbstractMybatisEntity;
 import com.cuukenn.openstudysource.cloud.framework.exception.BizException;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Date;
@@ -19,13 +15,10 @@ import java.util.Date;
  *
  * @author changgg
  */
-@Data
-@EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)
 @TableName("sys_user")
-@Slf4j
 public class User extends AbstractMybatisEntity {
     private static final long serialVersionUID = -1646039228536691577L;
+    private static final Logger log = LoggerFactory.getLogger(User.class);
     /* 用户核心数据 */
     /**
      * 用户名
@@ -34,7 +27,6 @@ public class User extends AbstractMybatisEntity {
     /**
      * 用户密码
      */
-    @ToString.Exclude
     private String password;
     /* 用户状态数据 */
     /**
@@ -130,9 +122,6 @@ public class User extends AbstractMybatisEntity {
         return getPasswordInvalidTime().before(new Date());
     }
 
-    @Getter
-    @RequiredArgsConstructor
-    @ToString
     public enum AccountStatus implements IResult {
         /**
          * 账户正常
@@ -165,5 +154,76 @@ public class User extends AbstractMybatisEntity {
         ;
         private final Integer code;
         private final String message;
+
+        AccountStatus(Integer code, String message) {
+            this.code = code;
+            this.message = message;
+        }
+
+        @Override
+        public Integer getCode() {
+            return code;
+        }
+
+        @Override
+        public String getMessage() {
+            return message;
+        }
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Boolean getLocked() {
+        return locked;
+    }
+
+    public void setLocked(Boolean locked) {
+        this.locked = locked;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Date getAccountInvalidTime() {
+        return accountInvalidTime;
+    }
+
+    public void setAccountInvalidTime(Date accountInvalidTime) {
+        this.accountInvalidTime = accountInvalidTime;
+    }
+
+    public Date getPasswordInvalidTime() {
+        return passwordInvalidTime;
+    }
+
+    public void setPasswordInvalidTime(Date passwordInvalidTime) {
+        this.passwordInvalidTime = passwordInvalidTime;
+    }
+
+    public Boolean getAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
     }
 }

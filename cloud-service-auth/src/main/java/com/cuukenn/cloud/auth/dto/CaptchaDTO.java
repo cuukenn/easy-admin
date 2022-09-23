@@ -2,20 +2,12 @@ package com.cuukenn.cloud.auth.dto;
 
 import com.cuukenn.openstudysource.cloud.framework.dto.Dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 
 /**
  * 验证码DTO
  *
  * @author changgg
  */
-@RequiredArgsConstructor
-@Data
-@EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)
 public class CaptchaDTO extends Dto {
     private static final long serialVersionUID = -134531838825915131L;
     /**
@@ -28,4 +20,17 @@ public class CaptchaDTO extends Dto {
      */
     @JsonProperty("img_base64")
     private final String imgBase64;
+
+    public CaptchaDTO(String id, String imgBase64) {
+        this.id = id;
+        this.imgBase64 = imgBase64;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getImgBase64() {
+        return imgBase64;
+    }
 }

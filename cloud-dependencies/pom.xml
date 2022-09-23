@@ -15,8 +15,6 @@
     <hutool.version>5.7.19</hutool.version>
     <fastjson.version>2.0.1</fastjson.version>
     <junit.version>5.8.2</junit.version>
-    <projectlombok.version>1.18.24</projectlombok.version>
-    <projectlombok-binding.version>0.2.0</projectlombok-binding.version>
     <mapstruct.version>1.4.2.Final</mapstruct.version>
     <springdoc.version>1.6.11</springdoc.version>
     <easy-captcha.version>1.6.2</easy-captcha.version>
@@ -67,17 +65,6 @@
         <groupId>com.alibaba</groupId>
         <artifactId>fastjson</artifactId>
         <version>${fastjson.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <version>${projectlombok.version}</version>
-        <scope>provided</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok-mapstruct-binding</artifactId>
-        <version>${projectlombok-binding.version}</version>
       </dependency>
       <!--            mapstruct-->
       <dependency>

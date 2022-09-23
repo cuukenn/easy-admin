@@ -35,12 +35,12 @@ x-admin
 │       └── cloud-framework-core           //core component
 │       └── cloud-framework-auth           //Authentication component
 │       └── cloud-framework-entity-mybatis //mybatis support components
-├── cloud-gateway  //gateway [gateway.cloud.com]
-├── cloud-service-auth  //auth [auth.cloud.com:8080]
+├── cloud-gateway  //gateway [127.0.0.1.com]
+├── cloud-service-auth  //auth [127.0.0.1:8080]
 ├── cloud-services  //Subservices collection
 │       └── user-service  //User service sub module
 │               └── user-client  //External API of user service
-│               └── user-app     //User service implementation [user.service.cloud.com:8090]
+│               └── user-app     //User service implementation [127.0.0.1:8090]
 ├──pom.xml  //project dependency
 ```
 
@@ -49,14 +49,3 @@ x-admin
 - Alibaba Nacos Server: [How do I install it?](https://github.com/cuukenn/docker-scripts/nacos)
 - Redis: [How do I install it?](https://github.com/cuukenn/docker-scripts/redis)
 - MySql: [How do I install it?](https://github.com/cuukenn/docker-scripts/mysql)
-
-###### Host file modification (for cookie multi system scope transfer)
-
-```
-# x-admin cloud host
-127.0.0.1 cloud.com
-127.0.0.1 gateway.cloud.com
-127.0.0.1 auth.cloud.com
-127.0.0.1 server.auth.cloud.com
-127.0.0.1 user.service.cloud.com
-```

@@ -8,8 +8,9 @@ import com.baomidou.mybatisplus.extension.plugins.inner.IllegalSQLInnerIntercept
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.cuukenn.openstudysource.cloud.framework.auth.util.SecurityUtil;
 import com.cuukenn.openstudysource.cloud.framework.entity.IEntity;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,8 +24,9 @@ import java.util.Date;
  * @author changgg
  */
 @Configuration
-@Slf4j
 public class MyBatisPlusConfig {
+    private static final Logger log = LoggerFactory.getLogger(MyBatisPlusConfig.class);
+
     /**
      * 防止恶意全表更新和删除
      *

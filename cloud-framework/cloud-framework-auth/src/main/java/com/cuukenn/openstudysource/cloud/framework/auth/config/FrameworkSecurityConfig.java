@@ -23,17 +23,20 @@ import java.util.Set;
  */
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
-@Import(SecurityConfiguration.class)
+@Import({SecurityConfiguration.class})
 @EnableSpringUtil
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class FrameworkSecurityConfig extends WebSecurityConfigurerAdapter {
+    private final TokenProperties tokenProperties;
+
+    public FrameworkSecurityConfig(TokenProperties tokenProperties) {
+        this.tokenProperties = tokenProperties;
+    }
+
     @Override
     public void configure(WebSecurity web) throws Exception {
         web
             .ignoring()
-            .antMatchers("/*.html")
-            .antMatchers("/**/*.html")
-            .antMatchers("/**/*.js")
-            .antMatchers("/**/*.css")
+            .antMatchers("/static/**")
             .antMatchers("/websocket/**");
     }
 
@@ -43,7 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         Map<RequestMappingInfo, HandlerMethod> handlerMethodMap = requestMappingHandlerMapping.getHandlerMethods();
         // 获取匿名标记
         Map<String, Set<String>> anonymousUrls = SecurityUtil.getAnonymousUrl(handlerMethodMap);
-        http.authorizeRequests(auth -> auth
+        http.sessionManagement(session -> session
+            .maximumSessions(tokenProperties.getMaximumSessions())
+        ).authorizeRequests(auth -> auth
             .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
             // 放行OPTIONS请求
             .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()

@@ -6,7 +6,6 @@ import com.cuukenn.cloud.auth.service.ICaptchaService;
 import com.cuukenn.cloud.auth.util.CaptchaUtil;
 import com.cuukenn.openstudysource.cloud.framework.dto.Result;
 import com.wf.captcha.base.Captcha;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,10 +20,13 @@ import java.util.regex.Pattern;
  */
 @RestController
 @RequestMapping("/captcha")
-@RequiredArgsConstructor
 public class CaptchaController {
     private final Pattern dotPattern = Pattern.compile(",");
     private final ICaptchaService captchaService;
+
+    public CaptchaController(ICaptchaService captchaService) {
+        this.captchaService = captchaService;
+    }
 
     /**
      * 获取验证码(长130,宽48)

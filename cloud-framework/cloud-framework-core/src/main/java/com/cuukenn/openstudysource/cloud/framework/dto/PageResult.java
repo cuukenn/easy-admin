@@ -1,12 +1,5 @@
 package com.cuukenn.openstudysource.cloud.framework.dto;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
 import java.util.Collection;
 
 /**
@@ -14,11 +7,11 @@ import java.util.Collection;
  *
  * @author changgg
  */
-@Data
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
 public class PageResult<T> extends Result<PageResult.PageWrapper<T>> {
+    private PageResult(IResult resultCode, PageWrapper<T> data) {
+        super(resultCode, data);
+    }
+
     /**
      * 分页数据
      *
@@ -37,12 +30,49 @@ public class PageResult<T> extends Result<PageResult.PageWrapper<T>> {
         super(ResultCode.SUCCESS, data);
     }
 
-    @AllArgsConstructor
-    @Data
     static class PageWrapper<T> {
         private Long pageNum;
         private Long pageSize;
         private Long pageTotal;
         private Collection<T> items;
+
+        public PageWrapper(Long pageNum, Long pageSize, Long pageTotal, Collection<T> items) {
+            this.pageNum = pageNum;
+            this.pageSize = pageSize;
+            this.pageTotal = pageTotal;
+            this.items = items;
+        }
+
+        public Long getPageNum() {
+            return pageNum;
+        }
+
+        public void setPageNum(Long pageNum) {
+            this.pageNum = pageNum;
+        }
+
+        public Long getPageSize() {
+            return pageSize;
+        }
+
+        public void setPageSize(Long pageSize) {
+            this.pageSize = pageSize;
+        }
+
+        public Long getPageTotal() {
+            return pageTotal;
+        }
+
+        public void setPageTotal(Long pageTotal) {
+            this.pageTotal = pageTotal;
+        }
+
+        public Collection<T> getItems() {
+            return items;
+        }
+
+        public void setItems(Collection<T> items) {
+            this.items = items;
+        }
     }
 }

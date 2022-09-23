@@ -6,9 +6,6 @@ import com.wf.captcha.ChineseGifCaptcha;
 import com.wf.captcha.GifCaptcha;
 import com.wf.captcha.SpecCaptcha;
 import com.wf.captcha.base.Captcha;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -17,9 +14,10 @@ import java.util.concurrent.ThreadLocalRandom;
  *
  * @author changgg
  */
-@Slf4j
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class CaptchaUtil {
+    private CaptchaUtil() {
+    }
+
     /**
      * 随机获取验证码类型
      *

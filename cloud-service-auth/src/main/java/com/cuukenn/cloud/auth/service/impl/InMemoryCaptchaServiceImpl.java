@@ -4,7 +4,6 @@ import cn.hutool.cache.Cache;
 import cn.hutool.cache.CacheUtil;
 import cn.hutool.core.util.IdUtil;
 import com.cuukenn.cloud.auth.service.ICaptchaService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
  * @author changgg
  */
 @Service
-@RequiredArgsConstructor
 public class InMemoryCaptchaServiceImpl implements ICaptchaService {
     private final Cache<String, String> cache = CacheUtil.newFIFOCache(1000, 60 * 1000);
 

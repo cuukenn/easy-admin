@@ -1,12 +1,10 @@
 package com.cuukenn.cloud.auth.service.impl;
 
 import com.cuukenn.cloud.auth.service.ICaptchaService;
-import lombok.RequiredArgsConstructor;
 
 /**
  * @author changgg
  */
-@RequiredArgsConstructor
 public class InRedisCaptchaServiceImpl implements ICaptchaService {
 
     @Override

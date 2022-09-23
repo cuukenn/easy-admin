@@ -1,0 +1,14 @@
+server:
+  servlet:
+    session:
+      cookie:
+        http-only: true
+spring:
+  session:
+    redis:
+      namespace: x-cloud:auth
+    timeout: 30m
+app:
+  token:
+    maximum-sessions: 5
+    remember-me-invalid-time-of-hours: 168

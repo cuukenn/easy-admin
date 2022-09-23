@@ -1,16 +1,8 @@
 package com.cuukenn.openstudysource.cloud.framework.dto;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
-
 /**
  * @author changgg
  */
-@RequiredArgsConstructor
-@Getter
-@ToString
 public enum ResultCode implements IResult {
     /**
      * 参数错误
@@ -27,6 +19,11 @@ public enum ResultCode implements IResult {
     private final Integer code;
     private final String message;
 
+    ResultCode(Integer code, String message) {
+        this.code = code;
+        this.message = message;
+    }
+
     /**
      * 创建自定义错误
      *
@@ -38,11 +35,33 @@ public enum ResultCode implements IResult {
         return new ResultCodeWrapper(code, message);
     }
 
-    @RequiredArgsConstructor
-    @Data
-    @ToString
     public static class ResultCodeWrapper implements IResult {
         private final Integer code;
         private final String message;
+
+        public ResultCodeWrapper(Integer code, String message) {
+            this.code = code;
+            this.message = message;
+        }
+
+        @Override
+        public Integer getCode() {
+            return code;
+        }
+
+        @Override
+        public String getMessage() {
+            return message;
+        }
+    }
+
+    @Override
+    public Integer getCode() {
+        return code;
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
     }
 }
