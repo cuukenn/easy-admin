@@ -42,6 +42,17 @@
       <groupId>org.springdoc</groupId>
       <artifactId>springdoc-openapi-webflux-ui</artifactId>
     </dependency>
+    <!-- jsoup -->
+    <dependency>
+      <groupId>org.jsoup</groupId>
+      <artifactId>jsoup</artifactId>
+      <version>${jsoup.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <optional>true</optional>
+    </dependency>
     <!--        test-->
     <dependency>
       <groupId>org.springframework.boot</groupId>

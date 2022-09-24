@@ -19,6 +19,7 @@
     <springdoc.version>1.6.11</springdoc.version>
     <easy-captcha.version>1.6.2</easy-captcha.version>
     <nimbus-jose-jwt.version>9.25</nimbus-jose-jwt.version>
+    <jsoup.version>1.15.3</jsoup.version>
   </properties>
   <!--依赖版本统一管理-->
   <dependencyManagement>
@@ -122,6 +123,12 @@
         <groupId>com.nimbusds</groupId>
         <artifactId>nimbus-jose-jwt</artifactId>
         <version>${nimbus-jose-jwt.version}</version>
+      </dependency>
+      <!-- jsoup -->
+      <dependency>
+        <groupId>org.jsoup</groupId>
+        <artifactId>jsoup</artifactId>
+        <version>${jsoup.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
