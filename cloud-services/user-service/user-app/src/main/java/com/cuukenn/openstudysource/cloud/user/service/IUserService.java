@@ -1,7 +1,6 @@
 package com.cuukenn.openstudysource.cloud.user.service;
 
-import com.cuukenn.openstudysource.cloud.framework.dto.PageQuery;
-import com.cuukenn.openstudysource.cloud.framework.dto.PageResult;
+import com.cuukenn.openstudysource.cloud.framework.BaseService;
 import com.cuukenn.openstudysource.cloud.user.dto.AuthUserDto;
 import com.cuukenn.openstudysource.cloud.user.dto.ChangePasswordCommand;
 import com.cuukenn.openstudysource.cloud.user.dto.CheckPasswdCommand;
@@ -14,36 +13,7 @@ import java.util.List;
 /**
  * @author changgg
  */
-public interface IUserService {
-    /**
-     * 分页查询数据
-     *
-     * @param query 分页数据
-     * @return 分页
-     */
-    PageResult<UserDto> list(PageQuery query);
-
-    /**
-     * 添加用户
-     *
-     * @param dto dto
-     */
-    void addUser(UserDto dto);
-
-    /**
-     * 删除用户
-     *
-     * @param uid 用户ID
-     */
-    void deleteUser(Long uid);
-
-    /**
-     * 更新用户
-     *
-     * @param command command
-     */
-    void updateUser(UpdateUserCommand command);
-
+public interface IUserService extends BaseService<UserDto, UserDto, UpdateUserCommand> {
     /**
      * 重置密码
      *

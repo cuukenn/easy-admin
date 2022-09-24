@@ -1,7 +1,6 @@
 package com.cuukenn.openstudysource.cloud.user.api;
 
-import com.cuukenn.openstudysource.cloud.framework.dto.PageQuery;
-import com.cuukenn.openstudysource.cloud.framework.dto.PageResult;
+import com.cuukenn.openstudysource.cloud.framework.BaseApi;
 import com.cuukenn.openstudysource.cloud.framework.dto.Result;
 import com.cuukenn.openstudysource.cloud.user.dto.AuthUserDto;
 import com.cuukenn.openstudysource.cloud.user.dto.ChangePasswordCommand;
@@ -9,13 +8,11 @@ import com.cuukenn.openstudysource.cloud.user.dto.CheckPasswdCommand;
 import com.cuukenn.openstudysource.cloud.user.dto.UpdatePasswordCommand;
 import com.cuukenn.openstudysource.cloud.user.dto.UpdateUserCommand;
 import com.cuukenn.openstudysource.cloud.user.dto.UserDto;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -25,7 +22,7 @@ import javax.validation.constraints.NotNull;
  *
  * @author changgg
  */
-public interface IUserApi {
+public interface IUserApi extends BaseApi<UserDto, UserDto, UpdateUserCommand> {
     String MAPPING = "/user";
 
     /**
@@ -44,42 +41,6 @@ public interface IUserApi {
      */
     @PostMapping(value = "/password-auth")
     UserDto passwordAuth(@Valid @NotNull @RequestBody CheckPasswdCommand command);
-
-    /**
-     * 分页查询用户
-     *
-     * @param query 分页数据
-     * @return 结果
-     */
-    @GetMapping(value = "/list")
-    PageResult<UserDto> listUser(@Valid PageQuery query);
-
-    /**
-     * 添加用户
-     *
-     * @param dto dto
-     * @return 结果
-     */
-    @PostMapping(value = "/add")
-    Result<Void> addUser(@Valid UserDto dto);
-
-    /**
-     * 更新用户数据
-     *
-     * @param command dto
-     * @return 结果
-     */
-    @PutMapping(value = "/update")
-    Result<Void> updateUser(@Valid UpdateUserCommand command);
-
-    /**
-     * 删除用户
-     *
-     * @param uid 用户ID
-     * @return 结果
-     */
-    @DeleteMapping(value = "/delete")
-    Result<Void> deleteUser(@Valid @NotNull @RequestParam("uid") Long uid);
 
     /**
      * 重置用户密码
