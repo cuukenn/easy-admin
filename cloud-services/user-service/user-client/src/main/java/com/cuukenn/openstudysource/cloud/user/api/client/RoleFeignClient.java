@@ -1,7 +1,6 @@
 package com.cuukenn.openstudysource.cloud.user.api.client;
 
 import com.cuukenn.openstudysource.cloud.user.api.IRoleApi;
-import com.cuukenn.openstudysource.cloud.user.api.IUserApi;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.cloud.openfeign.FeignClient;
 
@@ -10,7 +9,7 @@ import org.springframework.cloud.openfeign.FeignClient;
  *
  * @author changgg
  */
-@ConditionalOnMissingBean(IUserApi.class)
+@ConditionalOnMissingBean(IRoleApi.class)
 @FeignClient(name = "user-service", path = RoleFeignClient.MAPPING)
 public interface RoleFeignClient extends IRoleApi {
 }
