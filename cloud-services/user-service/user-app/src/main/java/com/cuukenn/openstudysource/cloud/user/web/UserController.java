@@ -23,11 +23,38 @@ import org.springframework.web.bind.annotation.RestController;
 @SuppressWarnings("AlibabaServiceOrDaoClassShouldEndWithImpl")
 @RestController
 @RequestMapping(IUserApi.MAPPING)
-public class UserApiController implements IUserApi {
+public class UserController implements IUserApi {
     private final IUserService userService;
 
-    public UserApiController(IUserService userService) {
+    public UserController(IUserService userService) {
         this.userService = userService;
+    }
+
+    @Override
+    @Secured("admin")
+    public PageResult<UserDto> list(PageQuery query) {
+        return userService.list(query);
+    }
+
+    @Override
+    @Secured("admin")
+    public Result<Void> add(UserDto dto) {
+        userService.add(dto);
+        return Result.success();
+    }
+
+    @Override
+    @Secured("admin")
+    public Result<Void> update(UpdateUserCommand command) {
+        userService.update(command);
+        return Result.success();
+    }
+
+    @Override
+    @Secured("admin")
+    public Result<Void> delete(Long uid) {
+        userService.delete(uid);
+        return Result.success();
     }
 
     @Override
@@ -39,33 +66,6 @@ public class UserApiController implements IUserApi {
     @Override
     public UserDto passwordAuth(CheckPasswdCommand command) {
         return userService.passwordAuth(command);
-    }
-
-    @Override
-    @Secured("admin")
-    public PageResult<UserDto> listUser(PageQuery query) {
-        return userService.list(query);
-    }
-
-    @Override
-    @Secured("admin")
-    public Result<Void> addUser(UserDto dto) {
-        userService.addUser(dto);
-        return Result.success();
-    }
-
-    @Override
-    @Secured("admin")
-    public Result<Void> updateUser(UpdateUserCommand command) {
-        userService.updateUser(command);
-        return Result.success();
-    }
-
-    @Override
-    @Secured("admin")
-    public Result<Void> deleteUser(Long uid) {
-        userService.deleteUser(uid);
-        return Result.success();
     }
 
     @Override

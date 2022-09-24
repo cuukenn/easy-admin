@@ -1,4 +1,4 @@
-package com.cuukenn.openstudysource.cloud.user.service;
+package com.cuukenn.openstudysource.cloud.user.service.impl;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
@@ -22,6 +22,7 @@ import com.cuukenn.openstudysource.cloud.user.dto.UserDto;
 import com.cuukenn.openstudysource.cloud.user.entity.Role;
 import com.cuukenn.openstudysource.cloud.user.entity.User;
 import com.cuukenn.openstudysource.cloud.user.entity.associate.UserRole;
+import com.cuukenn.openstudysource.cloud.user.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -65,16 +66,16 @@ public class DefaultUserServiceImpl implements IUserService {
             page.setOrders(Collections.singletonList(OrderItem.asc(query.getOrder().getColumn())));
         }
         PageDTO<User> result = userRepository.page(page);
-        List<UserDto> data = result.getRecords().stream().map(userConverter::toUserDto).collect(Collectors.toList());
+        List<UserDto> data = result.getRecords().stream().map(userConverter::toDto).collect(Collectors.toList());
         return PageResult.build(result.getCurrent(), result.getSize(), result.getTotal(), data);
     }
 
     @Override
-    public void addUser(UserDto dto) {
+    public void add(UserDto dto) {
         if (dto == null) {
             return;
         }
-        User user = userConverter.fromUserDto(dto);
+        User user = userConverter.fromDto(dto);
         user.setPassword(passwordEncoder.encode(DEFAULT_PASSWD));
         //默认值设置
         user.setLocked(false);
@@ -84,19 +85,19 @@ public class DefaultUserServiceImpl implements IUserService {
     }
 
     @Override
-    public void deleteUser(Long uid) {
-        if (uid == null) {
+    public void delete(Long id) {
+        if (id == null) {
             return;
         }
-        int cnt = userRepository.getBaseMapper().deleteById(uid);
+        int cnt = userRepository.getBaseMapper().deleteById(id);
         if (cnt <= 0) {
-            log.error("deleteUser failed,uid:{},maybe not exist", uid);
+            log.error("deleteUser failed,id:{},maybe not exist", id);
             throw new BizException(User.AccountStatus.NOT_FOUND);
         }
     }
 
     @Override
-    public void updateUser(UpdateUserCommand command) {
+    public void update(UpdateUserCommand command) {
         log.info("update user,uid:{}", -1L);
     }
 
@@ -188,6 +189,6 @@ public class DefaultUserServiceImpl implements IUserService {
         }
         user.checkAndThrow();
         user.checkPassword(passwordEncoder, command.getPassword());
-        return userConverter.toUserDto(user);
+        return userConverter.toDto(user);
     }
 }
