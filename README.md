@@ -1,93 +1,62 @@
-# 简介
+<p align="center">
+	<strong>🍬A set of jars that help easier build you onw project.</strong>
+</p>
+<p align="center">
+<a target="_blank" href="javascript:void(0)"><img src="https://img.shields.io/github/license/cuukenn/easy-framework"  alt=""/></a>
+<a target="_blank" href="javascript:void(0)"><img src="https://img.shields.io/badge/JDK-8+-green.svg"  alt=""/></a>
+<a target="_blank" href="javascript:void(0)"><img src="https://img.shields.io/github/languages/code-size/cuukenn/easy-framework"  alt=""/></a>
+<a target="_blank" href="javascript:void(0)"><img src="https://img.shields.io/github/stars/cuukenn/easy-framework?style=social"  alt=""/></a>
+</p>
 
-dynamic-mongodb-database-starter是一个基于springboot的快速集成Mongodb多数据源的启动器。
+<br/>
 
-# 特性
+-------------------------------------------------------------------------------
 
-- 支持 **切换数据源实例**。
-- 支持 **切换数据库**。
-- 支持 **SpEL表达式获取instanceId和database**。
-- 支持 **session获取instanceId和database**。
-- 支持 **request header获取instanceId和database**。
+[**🌎English Documentation**](README.en.md)
 
-# 使用方法
+-------------------------------------------------------------------------------
 
-1. 引入dynamic-mongodb-database-starter。
+## 📚简介
 
-```xml
-<!-- 具体发布版本可通过以下地址查询 -->
-<!-- https://mvnrepository.com/artifact/io.github.cuukenn/dynamic-mongodb-database-starter -->
-<dependency>
-  <groupId>io.github.cuukenn</groupId>
-  <artifactId>dynamic-mongodb-database-starter</artifactId>
-  <version>0.1.0</version>
-</dependency>
-```
+提供一系列java通用扩展合集
 
-2. 配置数据源。
+-------------------------------------------------------------------------------
 
-```yaml
-spring:
-  data:
-    mongodb:
-      host: 127.0.0.1
-      xxx: xxx
-      dynamic:
-        config:
-          test-1:
-            host: 127.0.0.1
-            xxx: xxx
-          test-2:
-            host: 127.0.0.1
-            xxx: xxx
-          #......省略
-          #以上配置mongodb下的为默认源
-          #dynamic.config中的为动态源
-          #相关配置与原mongo配置一致
-```
+## 🛠️包含组件
 
-3. 使用  **@DynamicMongo**  切换数据源。
+| 模块                                     | 介绍                   | 最新版本                                                                                                            |
+|----------------------------------------|----------------------|-----------------------------------------------------------------------------------------------------------------|
+| framework-starter-captcha              | 验证码快捷配置支持            | ![Maven Central](https://img.shields.io/maven-central/v/io.github.cuukenn/easy-framework-starter-captcha)       |
+| framework-starter-mybatis-plus         | Mybatis plus快捷配置支持   | ![Maven Central](https://img.shields.io/maven-central/v/io.github.cuukenn/easy-framework-starter-mybatis-plus)  |
+| framework-starter-protection           | 安全快捷配置支持             | ![Maven Central](https://img.shields.io/maven-central/v/io.github.cuukenn/easy-framework-starter-protection)    |
+| framework-starter-redis                | Redis快捷配置支持          | ![Maven Central](https://img.shields.io/maven-central/v/io.github.cuukenn/easy-framework-starter-redis)         |
+| framework-starter-file                 | 文件操作快捷配置支持           | ![Maven Central](https://img.shields.io/maven-central/v/io.github.cuukenn/easy-framework-starter-file)          |
+| framework-starter-excel                | Excel快捷配置支持          | ![Maven Central](https://img.shields.io/maven-central/v/io.github.cuukenn/easy-framework-starter-excel)         |
+| framework-starter-caffeine-jmx-monitor | Caffeine JMX监控快捷配置支持 | ![Maven Central](https://img.shields.io/maven-central/v/io.github.cuukenn/easy-framework-caffeine-jmx-monitor)  |
+| framework-starter-dynamic-mongo        | Mongo数据库动态数据源支持      | ![Maven Central](https://img.shields.io/maven-central/v/io.github.cuukenn/easy-framework-starter-dynamic-mongo) |
+| framework-starter-biz-operation-log    | 操作日志支持               | ![Maven Central](https://img.shields.io/maven-central/v/io.github.cuukenn/easy-framework-biz-operation-log)     |
+| framework-starter-biz-social           | 三方登录支持               | ![Maven Central](https://img.shields.io/maven-central/v/io.github.cuukenn/easy-framework-biz-social)            |
+| framework-starter-biz-tenant           | 租户支持                 | ![Maven Central](https://img.shields.io/maven-central/v/io.github.cuukenn/easy-framework-biz-tenant)            |
 
-**@DynamicMongo** 可以注解在方法上或类上，**同时存在就近原则 方法上注解 优先于 类上注解**。
+可以根据需求对每个模块单独引入。
 
-| 注解                                                         | 结果                                     |
-| :----------------------------------------------------------- | :--------------------------------------- |
-| 没有@DS                                                      | 默认数据源                               |
-| @DynamicMongo("instanceId")                                  | instanceId为指定库key                    |
-| @DynamicMongo(databaseName="databaseName")                   | databaseName为库名                       |
-| @DynamicMongo(instanceId="instanceId",databaseName="databaseName") | instanceId为指定库key,databaseName为库名 |
+-------------------------------------------------------------------------------
 
-```java
+## 📝文档
 
-@Service
-@DynamicMongo("slave")
-public class UserServiceImpl implements IUserService {
+**TODO**
 
-  @Autowired
-  private MongoTemplate mongoTemplate;
+-------------------------------------------------------------------------------
 
-  public List selectAll() {
-    //默认实例，默认数据库
-    return mongoTemplate.xxx();
-  }
+## 🐞提供bug反馈或建议
 
-  @Override
-  @DynamicMongo("slave_1")
-  public List selectByCondition() {
-    //slave_1实例，默认数据库
-    return mongoTemplate.xxx();
-  }
+提交问题反馈请说明正在使用的JDK版本呢、模块名称及版本和相关依赖库版本。
 
-  @Override
-  @DynamicMongo(instanceId = "slave_1", databaseName = "databaseName_1")
-  public List selectByCondition() {
-    //slave_1实例，databaseName_1数据库
-    return mongoTemplate.xxx();
-  }
-}
-```
+- [Gitee issue](https://gitee.com/cuukenn/easy-framework/issues)
+- [GitHub issue](https://github.com/cuukenn/easy-framework/issues)
 
-4. 代码示例
+-------------------------------------------------------------------------------
 
-- [码云 Demo](https://gitee.com/cuukenn/open-source-study/tree/master/sample/dynamic-mongodb-demo)
-- [Github Demo](https://github.com/cuukenn/open-source-study/tree/master/sample/dynamic-mongodb-demo)
+## ⭐Stars
+
+[![Stargazers over time](https://starchart.cc/cuukenn/easy-framework.svg)](https://starchart.cc/cuukenn/easy-framework)

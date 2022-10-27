@@ -1,89 +1,63 @@
-# Describe
+<p align="center">
+	<strong>🍬A set of jars that help easier build you onw project.</strong>
+</p>
+<p align="center">
+<a target="_blank" href="javascript:void(0)"><img src="https://img.shields.io/github/license/cuukenn/easy-framework"  alt=""/></a>
+<a target="_blank" href="javascript:void(0)"><img src="https://img.shields.io/badge/JDK-8+-green.svg"  alt=""/></a>
+<a target="_blank" href="javascript:void(0)"><img src="https://img.shields.io/github/languages/code-size/cuukenn/easy-framework"  alt=""/></a>
+<a target="_blank" href="javascript:void(0)"><img src="https://img.shields.io/github/stars/cuukenn/easy-framework?style=social"  alt=""/></a>
+</p>
 
-dynamic-mongodb-database-starter is a dynamic mongo database components for SpringBoot。
+<br/>
 
-# Feature
+-------------------------------------------------------------------------------
 
-- Support **dynamic mongo instance**。
-- Support **dynamic mongo database**。
-- Support **read instanceId and database by SpEL**。
-- Support **read instanceId and database from Session**。
-- Support **read instanceId and database from request Header**。
+[**🌎English Documentation**](README.en.md)
 
-# How to use it
+-------------------------------------------------------------------------------
 
-1. Install dynamic-mongodb-database-starter。
+## 📚Introduction
 
-```xml
-<!-- you can find the version in the follow website -->
-<!-- https://mvnrepository.com/artifact/io.github.cuukenn/dynamic-mongodb-database-starter -->
-<dependency>
-  <groupId>io.github.cuukenn</groupId>
-  <artifactId>dynamic-mongodb-database-starter</artifactId>
-  <version>0.1.0</version>
-</dependency>
-```
+Provide a series of java extension collections
 
-2. Configurate
+-------------------------------------------------------------------------------
 
-```yaml
-spring:
-  data:
-    mongodb:
-      host: 127.0.0.1
-      xxx: xxx
-      dynamic:
-        config:
-          test-1:
-            host: 127.0.0.1
-            xxx: xxx
-          test-2:
-            host: 127.0.0.1
-            xxx: xxx
-```
+## 🛠️Include components
 
-3. use  **@DynamicMongo** to switch mongo database。
+| Module Name                            | Introduce                | Latest Version                                                                                                  |
+|----------------------------------------|--------------------------|-----------------------------------------------------------------------------------------------------------------|
+| framework-starter-captcha              | captcha support          | ![Maven Central](https://img.shields.io/maven-central/v/io.github.cuukenn/easy-framework-starter-captcha)       |
+| framework-starter-mybatis-plus         | Mybatis-plus support     | ![Maven Central](https://img.shields.io/maven-central/v/io.github.cuukenn/easy-framework-starter-mybatis-plus)  |
+| framework-starter-protection           | protection support       | ![Maven Central](https://img.shields.io/maven-central/v/io.github.cuukenn/easy-framework-starter-protection)    |
+| framework-starter-redis                | Redis support            | ![Maven Central](https://img.shields.io/maven-central/v/io.github.cuukenn/easy-framework-starter-redis)         |
+| framework-starter-file                 | File support             | ![Maven Central](https://img.shields.io/maven-central/v/io.github.cuukenn/easy-framework-starter-file)          |
+| framework-starter-excel                | Excel support            | ![Maven Central](https://img.shields.io/maven-central/v/io.github.cuukenn/easy-framework-starter-excel)         |
+| framework-starter-caffeine-jmx-monitor | Caffeine JMX support     | ![Maven Central](https://img.shields.io/maven-central/v/io.github.cuukenn/easy-framework-caffeine-jmx-monitor)  |
+| framework-starter-dynamic-mongo        | Dynamic Mongo support    | ![Maven Central](https://img.shields.io/maven-central/v/io.github.cuukenn/easy-framework-starter-dynamic-mongo) |
+| framework-starter-biz-operation-log    | Operation Log support    | ![Maven Central](https://img.shields.io/maven-central/v/io.github.cuukenn/easy-framework-biz-operation-log)     |
+| framework-starter-biz-social           | Third-part Login support | ![Maven Central](https://img.shields.io/maven-central/v/io.github.cuukenn/easy-framework-biz-social)            |
+| framework-starter-biz-tenant           | Tenant support           | ![Maven Central](https://img.shields.io/maven-central/v/io.github.cuukenn/easy-framework-biz-tenant)            |
 
-**@DynamicMongo** use in class or method，**method first,class second**。
+Each module can be introduced separately as required.
 
-| annotation                                                   | result                                        |
-| :----------------------------------------------------------- | :-------------------------------------------- |
-| no @DynamicMongo in class and method                         | default                                       |
-| @DynamicMongo("instanceId")                                  | mongodb instance of instanceId                |
-| @DynamicMongo(databaseName="databaseName")                   | mongodb dayabase of databaseName              |
-| @DynamicMongo(instanceId="instanceId",databaseName="databaseName") | mongodb instance of instanceId & databaseName |
+-------------------------------------------------------------------------------
 
-```java
+## 📝Docs
 
-@Service
-@DynamicMongo("slave")
-public class UserServiceImpl implements IUserService {
+**TODO**
 
-  @Autowired
-  private MongoTemplate mongoTemplate;
+-------------------------------------------------------------------------------
 
-  public List selectAll() {
-    //default instance,default databaseName
-    return mongoTemplate.xxx();
-  }
+## 🐞Issue
 
-  @Override
-  @DynamicMongo("slave_1")
-  public List selectByCondition() {
-    //slave_1 instance，default databaseName
-    return mongoTemplate.xxx();
-  }
+Please specify the JDK version being used, module name and version, and relevant dependent library version when
+submitting problem feedback.
 
-  @Override
-  @DynamicMongo(instanceId = "slave_1", databaseName = "databaseName_1")
-  public List selectByCondition() {
-    //slave_1 instance，databaseName_1 databaseName
-    return mongoTemplate.xxx();
-  }
-}
-```
+- [Gitee issue](https://gitee.com/cuukenn/easy-framework/issues)
+- [GitHub issue](https://github.com/cuukenn/easy-framework/issues)
 
-4. Code Example
+-------------------------------------------------------------------------------
 
-- [Gitee Demo](https://gitee.com/cuukenn/open-source-study/tree/master/sample/dynamic-mongodb-demo)
-- [Github Demo](https://github.com/cuukenn/open-source-study/tree/master/sample/dynamic-mongodb-demo)
+## ⭐Stars
+
+[![Stargazers over time](https://starchart.cc/cuukenn/easy-framework.svg)](https://starchart.cc/cuukenn/easy-framework)

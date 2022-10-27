@@ -6,7 +6,7 @@ JDK版本（必需）：
 
 SpringBoot版本（必需）：
 
-dynamic-mongodb-database-starter版本（必需）：
+模块名称和版本（必需）：
 
 # 描述发生了什么
 
