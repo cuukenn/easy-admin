@@ -1,3 +1,18 @@
+/*
+ * Copyright 2022 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package io.github.cuukenn.dynamic.database.mongodb.support.aop;
 
 import io.github.cuukenn.dynamic.database.mongodb.support.DynamicMongo;
@@ -20,7 +35,7 @@ import java.util.Map;
  * @author changgg
  */
 public class DynamicMongoClassResolver implements DynamicMongoContextResolver {
-	private static final Logger log = LoggerFactory.getLogger(DynamicMongoClassResolver.class);
+	private static final Logger logger = LoggerFactory.getLogger(DynamicMongoClassResolver.class);
 	/**
 	 * 缓存方法对应的数据源
 	 */
@@ -39,10 +54,10 @@ public class DynamicMongoClassResolver implements DynamicMongoContextResolver {
 
 	@Override
 	public DynamicMongoContext resolve(Method method, Object targetObject) {
-		final boolean isDebugEnabled = log.isDebugEnabled();
+		final boolean isDebugEnabled = logger.isDebugEnabled();
 		if (method.getDeclaringClass() == Object.class) {
 			if (isDebugEnabled) {
-				log.debug("the method belongs to Object class,skip it");
+				logger.debug("the method belongs to Object class,skip it");
 			}
 			return new DefaultDynamicMongoContext();
 		}
@@ -50,7 +65,7 @@ public class DynamicMongoClassResolver implements DynamicMongoContextResolver {
 		DynamicMongoContext context = this.contextCache.get(cacheKey);
 		if (context == null) {
 			if (isDebugEnabled) {
-				log.debug("not found in cache try second lock");
+				logger.debug("not found in cache try second lock");
 			}
 			synchronized (lock) {
 				context = this.contextCache.get(cacheKey);
@@ -58,12 +73,12 @@ public class DynamicMongoClassResolver implements DynamicMongoContextResolver {
 					context = resolveContext(method);
 					if (context == null) {
 						if (isDebugEnabled) {
-							log.debug("cant not resolve the context,just create default");
+							logger.debug("cant not resolve the context,just create default");
 						}
 						context = new DefaultDynamicMongoContext();
 					}
 					if (isDebugEnabled) {
-						log.debug("cache context:{}", context);
+						logger.debug("cache context:{}", context);
 					}
 					this.contextCache.put(cacheKey, context);
 				}

@@ -20,4 +20,10 @@
 		<developerConnection>${scm.git.developerConnection}</developerConnection>
 		<url>${git.url}</url>
 	</scm>
+	<dependencies>
+		<dependency>
+			<groupId>io.github.cuukenn</groupId>
+			<artifactId>easy-framework-core</artifactId>
+		</dependency>
+	</dependencies>
 </project>

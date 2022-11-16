@@ -1,3 +1,18 @@
+/*
+ * Copyright 2022 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package io.github.cuukenn.dynamic.database.mongodb.support.context.parser;
 
 import io.github.cuukenn.dynamic.database.mongodb.support.DynamicContextValueParser;
@@ -9,7 +24,7 @@ import org.slf4j.LoggerFactory;
  * @author changgg
  */
 public abstract class AbstractChainValueParser implements DynamicContextValueParser {
-	private static final Logger log = LoggerFactory.getLogger(AbstractChainValueParser.class);
+	private static final Logger logger = LoggerFactory.getLogger(AbstractChainValueParser.class);
 	private DynamicContextValueParser nextParser;
 
 	public void setNextParser(DynamicContextValueParser nextParser) {
@@ -18,9 +33,9 @@ public abstract class AbstractChainValueParser implements DynamicContextValuePar
 
 	@Override
 	public String parse(MethodInvocation invocation, String value) {
-		final boolean isDebugEnabled = log.isDebugEnabled();
+		final boolean isDebugEnabled = logger.isDebugEnabled();
 		if (isDebugEnabled) {
-			log.debug("invocation:{},value:{}", invocation, value);
+			logger.debug("invocation:{},value:{}", invocation, value);
 		}
 		String parsedValue = null;
 		if (match(value)) {
