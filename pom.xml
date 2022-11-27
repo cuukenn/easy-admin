@@ -6,9 +6,6 @@
 	<groupId>io.github.cuukenn</groupId>
 	<artifactId>easy-framework-build</artifactId>
 	<version>${revision}</version>
-	<modules>
-		<module>framework-project-tests</module>
-	</modules>
 	<packaging>pom</packaging>
 	<name>framework-build</name>
 	<description>Framework Extension Build</description>

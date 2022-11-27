@@ -14,6 +14,7 @@
 	<description>Framework Extension Core</description>
 	<properties>
 		<main.basedir>${basedir}/../..</main.basedir>
+		<swagger-annotations.version>2.2.2</swagger-annotations.version>
 	</properties>
 	<scm>
 		<connection>${scm.git.connection}</connection>
@@ -24,6 +25,11 @@
 		<dependency>
 			<groupId>jakarta.validation</groupId>
 			<artifactId>jakarta.validation-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger.core.v3</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>${swagger-annotations.version}</version>
 		</dependency>
 	</dependencies>
 </project>

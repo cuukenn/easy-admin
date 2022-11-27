@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 the original author or authors.
+ * Copyright 2022 changgg.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,10 +17,11 @@ package io.github.cuukenn.easyframework.redis.core.configure;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
+
+import javax.annotation.Resource;
 
 /**
  * @author changgg
@@ -29,7 +30,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 public class RedisConfiguration {
 	private static final Logger logger = LoggerFactory.getLogger(RedisConfiguration.class);
 
-	@Autowired
+	@Resource
 	public void initRedisTemplate(RedisTemplate<Object, Object> redisTemplate) {
 		logger.info("[initRedisTemplate][set init properties]");
 		redisTemplate.setDefaultSerializer(RedisSerializer.json());

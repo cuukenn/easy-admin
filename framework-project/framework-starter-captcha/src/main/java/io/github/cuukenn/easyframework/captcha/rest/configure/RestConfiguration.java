@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 the original author or authors.
+ * Copyright 2022 changgg.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 package io.github.cuukenn.easyframework.captcha.rest.configure;
 
-import io.github.cuukenn.easyframework.captcha.rest.web.CaptchaController;
+import io.github.cuukenn.easyframework.captcha.rest.controller.admin.auth.CaptchaController;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 

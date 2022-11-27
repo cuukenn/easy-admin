@@ -22,6 +22,7 @@
 		<module>framework-core</module>
 		<module>framework-starter-captcha</module>
 		<module>framework-starter-mybatis-plus</module>
+		<module>framework-starter-jpa</module>
 		<module>framework-starter-protection</module>
 		<module>framework-starter-redis</module>
 		<module>framework-starter-file</module>

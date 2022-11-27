@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 the original author or authors.
+ * Copyright 2022 changgg.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 package io.github.cuukenn.easyframework.mybatis.core.handle;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
-import io.github.cuukenn.easyframework.core.pojo.dao.IEntity;
+import io.github.cuukenn.easyframework.core.dao.IEntity;
 import io.github.cuukenn.easyframework.core.api.CurrentUserService;
 import org.apache.ibatis.reflection.MetaObject;
 

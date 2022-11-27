@@ -31,7 +31,7 @@
 		</dependency>
 		<dependency>
 			<groupId>io.github.cuukenn</groupId>
-			<artifactId>easy-framework-starter-mybatis-plus</artifactId>
+			<artifactId>easy-framework-starter-jpa</artifactId>
 		</dependency>
 	</dependencies>
 </project>

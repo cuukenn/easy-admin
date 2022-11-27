@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 the original author or authors.
+ * Copyright 2022 changgg.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 package io.github.cuukenn.easyframework.biz.operationlog;
 
 import io.github.cuukenn.easyframework.biz.operationlog.aop.configure.OperationLogAopConfiguration;
+import io.github.cuukenn.easyframework.biz.operationlog.dao.OperationRepository;
 import io.github.cuukenn.easyframework.biz.operationlog.properties.OperationLogProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -26,8 +27,8 @@ import org.springframework.context.annotation.Import;
  * @author changgg
  */
 @Configuration(proxyBeanMethods = false)
-@ConditionalOnProperty(prefix = OperationLogProperties.PREFIX, name = "enable", value = "true", matchIfMissing = true)
+@ConditionalOnProperty(prefix = OperationLogProperties.PREFIX, name = "enable", havingValue = "true", matchIfMissing = true)
 @EnableConfigurationProperties(OperationLogProperties.class)
-@Import(OperationLogAopConfiguration.class)
+@Import({OperationLogAopConfiguration.class, OperationRepository.class})
 public class EasyFrameworkOperationLogAutoConfiguration {
 }

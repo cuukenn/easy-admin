@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 the original author or authors.
+ * Copyright 2022 changgg.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ import io.github.cuukenn.easyframework.web.accesslog.configurate.AccessLogConfig
 import io.github.cuukenn.easyframework.web.jackson.configurate.JacksonConfiguration;
 import io.github.cuukenn.easyframework.web.properties.WebProperties;
 import io.github.cuukenn.easyframework.web.rest.configure.RestConfiguration;
+import io.github.cuukenn.easyframework.web.rest.configure.WebConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -28,8 +29,8 @@ import org.springframework.context.annotation.Import;
  * @author changgg
  */
 @Configuration(proxyBeanMethods = false)
-@ConditionalOnProperty(value = WebProperties.PREFIX, name = "enable", havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(prefix = WebProperties.PREFIX, name = "enable", havingValue = "true", matchIfMissing = true)
 @EnableConfigurationProperties(WebProperties.class)
-@Import({AccessLogConfiguration.class, RestConfiguration.class, JacksonConfiguration.class})
+@Import({AccessLogConfiguration.class, RestConfiguration.class, WebConfiguration.class, JacksonConfiguration.class})
 public class EasyFrameworkWebAutoConfiguration {
 }

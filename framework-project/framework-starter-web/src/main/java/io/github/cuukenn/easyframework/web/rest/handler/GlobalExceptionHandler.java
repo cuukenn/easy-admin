@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 the original author or authors.
+ * Copyright 2022 changgg.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,8 +18,8 @@ package io.github.cuukenn.easyframework.web.rest.handler;
 import io.github.cuukenn.easyframework.core.exception.BizException;
 import io.github.cuukenn.easyframework.core.exception.ServerException;
 import io.github.cuukenn.easyframework.core.exception.enums.GlobalResultCode;
-import io.github.cuukenn.easyframework.core.pojo.ApiPageResult;
-import io.github.cuukenn.easyframework.core.pojo.ApiResult;
+import io.github.cuukenn.easyframework.core.vo.ApiPageResult;
+import io.github.cuukenn.easyframework.core.vo.ApiResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.validation.BindException;
