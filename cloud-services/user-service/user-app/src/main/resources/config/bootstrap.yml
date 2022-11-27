@@ -1,9 +1,0 @@
-server:
-  port: 8090
-spring:
-  application:
-    name: @project.name@
-  profiles:
-    active: @env@
-springdoc:
-  version: @springdoc.version@

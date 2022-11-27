@@ -1,2 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.cuukenn.openstudysource.cloud.framework.auth.AuthAutoconfiguration

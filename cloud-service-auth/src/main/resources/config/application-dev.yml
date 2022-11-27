@@ -1,6 +1,0 @@
-spring:
-  thymeleaf:
-    cache: false
-springdoc:
-  api-docs:
-    enabled: true

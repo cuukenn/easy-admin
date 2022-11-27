@@ -1,15 +1,15 @@
 root = true
 
 [*]
-indent_style = space
-indent_size = 2
 charset = utf-8
 end_of_line = lf
-trim_trailing_whitespace = true
-insert_final_newline = true
+
+[*.{groovy,java,kt,xml}]
+indent_style = tab
+indent_size = 4
 
 [*.java]
-indent_size = 4
+ij_java_class_count_to_use_import_on_demand = 999999999
 
 [*.md]
 insert_final_newline = false

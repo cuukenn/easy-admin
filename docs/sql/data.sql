@@ -1,4 +1,5 @@
-# admin/123456
+#
+admin/123456
 # user/123456
 INSERT INTO `sys_user`(`id`, `created_by`, `created_time`, `last_modified_by`, `last_modified_time`, `is_deleted`,
                        `username`, `password`,
