@@ -16,6 +16,7 @@
 package io.github.cuukenn.easyframework.jpa.dao;
 
 import io.github.cuukenn.easyframework.core.dao.ITenant;
+import org.hibernate.annotations.Comment;
 
 import javax.persistence.MappedSuperclass;
 
@@ -28,6 +29,7 @@ public abstract class AbstractJpaTenantEntityBool extends AbstractJpaEntityBool 
 	/**
 	 * 租户ID
 	 */
+	@Comment("租户id")
 	private Long tenantId;
 
 	@Override

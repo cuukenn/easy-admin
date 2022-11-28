@@ -18,7 +18,6 @@ package io.github.cuukenn.easyframework.web.rest.handler;
 import io.github.cuukenn.easyframework.core.exception.BizException;
 import io.github.cuukenn.easyframework.core.exception.ServerException;
 import io.github.cuukenn.easyframework.core.exception.enums.GlobalResultCode;
-import io.github.cuukenn.easyframework.core.vo.ApiPageResult;
 import io.github.cuukenn.easyframework.core.vo.ApiResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -192,7 +191,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(BizException.class)
 	public ApiResult<Void> handleException(BizException exception) {
 		logger.error("[biz exception][code:[{}], message:[{}]]", exception.getCode(), exception.getMessage());
-		return ApiPageResult.error(exception);
+		return ApiResult.error(exception);
 	}
 
 	/**
@@ -204,7 +203,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(ServerException.class)
 	public ApiResult<Void> handleException(ServerException exception) {
 		logger.error("[serverExceptionHandler][message:[{}]]", exception.getMessage(), exception);
-		return ApiPageResult.error(GlobalResultCode.INTERNAL_SERVER_ERROR);
+		return ApiResult.error(GlobalResultCode.INTERNAL_SERVER_ERROR);
 	}
 
 	/**
@@ -217,6 +216,6 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	public ApiResult<Void> defaultHandleException(HttpServletRequest req, Throwable exception) {
 		logger.error("[defaultHandleException][message:[{}]]", exception.getMessage(), exception);
-		return ApiPageResult.error(GlobalResultCode.UNKNOWN);
+		return ApiResult.error(GlobalResultCode.UNKNOWN);
 	}
 }

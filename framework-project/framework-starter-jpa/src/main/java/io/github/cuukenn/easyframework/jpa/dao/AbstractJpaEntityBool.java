@@ -16,7 +16,8 @@
 package io.github.cuukenn.easyframework.jpa.dao;
 
 import io.github.cuukenn.easyframework.core.dao.IBoolLogicDeleteEntity;
-import org.hibernate.annotations.Where;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.Comment;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -33,34 +34,39 @@ import java.util.Date;
  */
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-@Where(clause = "deleted=0")
 public abstract class AbstractJpaEntityBool implements IBoolLogicDeleteEntity {
 	private static final long serialVersionUID = -5132345367955693237L;
 	/**
 	 * 创建人
 	 */
 	@CreatedBy
+	@Comment("创建人")
 	private Long createdBy;
 	/**
 	 * 更新人
 	 */
 	@LastModifiedBy
+	@Comment("修改人")
 	private Long lastModifiedBy;
 	/**
 	 * 创建时间
 	 */
 	@CreatedDate
 	@Column(nullable = false)
+	@Comment("创建时间")
 	private Date createdTime;
 	/**
 	 * 更新时间
 	 */
 	@LastModifiedDate
 	@Column(nullable = false)
+	@Comment("修改时间")
 	private Date lastModifiedTime;
 	/**
 	 * 逻辑删除状态
 	 */
+	@ColumnDefault(value = "false")
+	@Comment("逻辑删除：true 已删除,false 正常")
 	private Boolean deleted;
 
 	@Override
@@ -109,9 +115,6 @@ public abstract class AbstractJpaEntityBool implements IBoolLogicDeleteEntity {
 	}
 
 	public void setDeleted(Boolean deleted) {
-		if (deleted == null) {
-			this.deleted = false;
-		}
 		this.deleted = deleted;
 	}
 

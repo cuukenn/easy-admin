@@ -23,11 +23,7 @@ package io.github.cuukenn.easyframework.core.dao;
  */
 public interface IBoolLogicDelete extends ILogicDelete<Boolean> {
 	/**
-	 * 是否被删除
-	 *
-	 * @return delete status
+	 * 逻辑删除后缀
 	 */
-	default boolean deleted() {
-		return Boolean.TRUE.equals(getDeleted());
-	}
+	String LOGIC_DELETE_SQL = "deleted = false";
 }

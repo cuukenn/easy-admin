@@ -13,18 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.cuukenn.easyframework.web.jackson;
+package io.github.cuukenn.easyframework.web.toolkit.valid;
 
 /**
+ * 更新数据时进行分组校验
+ * {@link org.springframework.validation.annotation.Validated}
+ * {@link javax.validation.groups.Default}
+ *
  * @author changgg
  */
-public final class DatePattern {
-	public static final String NORM_DATETIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
-	public static final String DATETIME_PATTERN1 = "yyyy/MM/dd HH:mm:ss";
-	public static final String DATETIME_PATTERN2 = "yyyy/MM/dd";
-	public static final String DATETIME_PATTERN3 = "yyyyMMdd";
-	public static final String DATETIME_PATTERN4 = "MM/dd/yyyy";
-
-	private DatePattern() {
-	}
+public interface UpdateGroup {
 }

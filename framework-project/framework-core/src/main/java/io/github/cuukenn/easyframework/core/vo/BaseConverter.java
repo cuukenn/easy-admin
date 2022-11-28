@@ -16,6 +16,8 @@
 package io.github.cuukenn.easyframework.core.vo;
 
 
+import java.util.List;
+
 /**
  * @author changgg
  */
@@ -35,4 +37,20 @@ public interface BaseConverter<Source, Target> {
 	 * @return dto
 	 */
 	Source toSource(Target target);
+
+	/**
+	 * source2target
+	 *
+	 * @param sources source
+	 * @return entity
+	 */
+	List<Target> toTarget(List<Source> sources);
+
+	/**
+	 * target2source
+	 *
+	 * @param targets target
+	 * @return dto
+	 */
+	List<Source> toSource(List<Target> targets);
 }

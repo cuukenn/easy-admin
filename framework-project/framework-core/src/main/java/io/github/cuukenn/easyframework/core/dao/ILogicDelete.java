@@ -37,11 +37,4 @@ public interface ILogicDelete<T> extends Serializable {
 	 * @param status 状态
 	 */
 	void setDeleted(T status);
-
-	/**
-	 * 是否被删除
-	 *
-	 * @return delete status
-	 */
-	boolean deleted();
 }

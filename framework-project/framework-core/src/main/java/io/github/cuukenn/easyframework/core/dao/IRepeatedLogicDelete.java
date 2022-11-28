@@ -23,12 +23,7 @@ package io.github.cuukenn.easyframework.core.dao;
  */
 public interface IRepeatedLogicDelete extends ILogicDelete<Long> {
 	/**
-	 * 是否被删除
-	 *
-	 * @return delete status
+	 * 逻辑删除后缀
 	 */
-	default boolean deleted() {
-		Long deleted = getDeleted();
-		return deleted != null && deleted != 0;
-	}
+	String LOGIC_DELETE_SQL = "deleted = 0";
 }
