@@ -8,16 +8,16 @@
 		<artifactId>easy-framework-parent</artifactId>
 		<version>0.1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>easyadmin-parent</artifactId>
+	<artifactId>easy-admin-parent</artifactId>
 	<version>${revision}</version>
 	<packaging>pom</packaging>
 	<modules>
-		<module>easyadmin-dependencies</module>
-		<module>easyadmin-framework</module>
-		<module>easyadmin-server</module>
-		<module>easyadmin-module-system</module>
-		<module>easyadmin-module-bmp</module>
-		<module>easyadmin-module-infra</module>
+		<module>easy-admin-dependencies</module>
+		<module>easy-admin-framework</module>
+		<module>easy-admin-server</module>
+		<module>easy-admin-module-system</module>
+		<module>easy-admin-module-bmp</module>
+		<module>easy-admin-module-infra</module>
 	</modules>
 	<properties>
 		<revision>0.1.0-SNAPSHOT</revision>
@@ -34,7 +34,7 @@
 		<dependencies>
 			<dependency>
 				<groupId>io.github.cuukenn</groupId>
-				<artifactId>easyadmin-dependencies</artifactId>
+				<artifactId>easy-admin-dependencies</artifactId>
 				<version>${revision}</version>
 				<type>pom</type>
 				<scope>import</scope>
@@ -42,17 +42,17 @@
 			<!--  framework-->
 			<dependency>
 				<groupId>io.github.cuukenn</groupId>
-				<artifactId>easyadmin-module-infra</artifactId>
+				<artifactId>easy-admin-module-infra</artifactId>
 				<version>${revision}</version>
 			</dependency>
 			<dependency>
 				<groupId>io.github.cuukenn</groupId>
-				<artifactId>easyadmin-module-bmp</artifactId>
+				<artifactId>easy-admin-module-bmp</artifactId>
 				<version>${revision}</version>
 			</dependency>
 			<dependency>
 				<groupId>io.github.cuukenn</groupId>
-				<artifactId>easyadmin-module-system</artifactId>
+				<artifactId>easy-admin-module-system</artifactId>
 				<version>${revision}</version>
 			</dependency>
 		</dependencies>
