@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<groupId>io.github.cuukenn</groupId>
+		<artifactId>easy-framework-parent</artifactId>
+		<version>${revision}</version>
+		<relativePath>../framework-parent</relativePath>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>easy-framework-starter-security</artifactId>
+	<name>framework-starter-security</name>
+	<description>Framework Security Starter For Spring</description>
+	<properties>
+		<main.basedir>${basedir}/../..</main.basedir>
+	</properties>
+	<scm>
+		<connection>${scm.git.connection}</connection>
+		<developerConnection>${scm.git.developerConnection}</developerConnection>
+		<url>${git.url}</url>
+	</scm>
+	<dependencies>
+		<dependency>
+			<groupId>io.github.cuukenn</groupId>
+			<artifactId>easy-framework-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.github.cuukenn</groupId>
+			<artifactId>easy-framework-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+	</dependencies>
+</project>

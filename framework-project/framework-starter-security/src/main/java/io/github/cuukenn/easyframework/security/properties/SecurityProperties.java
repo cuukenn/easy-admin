@@ -13,44 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.cuukenn.easyframework.core.vo;
+package io.github.cuukenn.easyframework.security.properties;
 
+import io.github.cuukenn.easyframework.core.EasyFrameworkConstant;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import java.util.List;
+import static io.github.cuukenn.easyframework.security.properties.SecurityProperties.PREFIX;
 
 /**
  * @author changgg
  */
-public interface BaseConverter<Source, Target> {
-	/**
-	 * source2target
-	 *
-	 * @param source source
-	 * @return entity
-	 */
-	Target toTarget(Source source);
-
-	/**
-	 * target2source
-	 *
-	 * @param target target
-	 * @return dto
-	 */
-	Source toSource(Target target);
-
-	/**
-	 * source2target
-	 *
-	 * @param sources source
-	 * @return entity
-	 */
-	List<Target> toTarget(List<Source> sources);
-
-	/**
-	 * target2source
-	 *
-	 * @param targets target
-	 * @return dto
-	 */
-	List<Source> toSource(List<Target> targets);
+@ConfigurationProperties(prefix = PREFIX)
+public class SecurityProperties {
+	public static final String PREFIX = EasyFrameworkConstant.PROPERTIED_PREFIX + "security";
 }
