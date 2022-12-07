@@ -8,9 +8,16 @@ spring:
       maximum-pool-size: 20
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: true
     open-in-view: true
+    defer-datasource-initialization: true
+  sql:
+    init:
+      data-locations:
+        - optional:classpath*:sql/role.sql
+        - optional:classpath*:sql/menu.sql
+      mode: always
 management:
   endpoints:
     web:
