@@ -15,12 +15,14 @@
  */
 package io.github.cuukenn.easyadmin.module.system.dao;
 
+import io.github.cuukenn.easyadmin.module.system.enums.GenderType;
 import io.github.cuukenn.easyframework.core.dao.IBoolLogicDelete;
 import io.github.cuukenn.easyframework.jpa.dao.AbstractJpaEntityBool;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -61,7 +63,7 @@ public class UserPo extends AbstractJpaEntityBool {
 	private String nickname;
 	@Comment("性别")
 	@Column(length = 4)
-	private String gender;
+	private GenderType gender;
 	@Comment("头像地址")
 	@Column(length = 100)
 	private String avatar;
@@ -71,6 +73,9 @@ public class UserPo extends AbstractJpaEntityBool {
 	@Comment("邮箱")
 	@Column(length = 50)
 	private String email;
+	@ColumnDefault(value = "false")
+	@Comment("状态(开启/关闭)")
+	private Boolean status;
 
 	@Override
 	public Long getId() {

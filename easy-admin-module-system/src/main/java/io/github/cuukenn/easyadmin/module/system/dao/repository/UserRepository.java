@@ -24,4 +24,28 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserRepository extends BaseRepository<UserPo> {
+	/**
+	 * 用户名已存在
+	 *
+	 * @param name 用户名称
+	 * @return 是否存在
+	 */
+	boolean existsByUsername(String name);
+
+	/**
+	 * 用户名已存在
+	 *
+	 * @param name 用户名称
+	 * @param id   id
+	 * @return 是否存在
+	 */
+	boolean existsByUsernameAndIdNot(String name, Long id);
+
+	/**
+	 * 查询指定状态的用户
+	 *
+	 * @param status 用户状态
+	 * @return 用户
+	 */
+	Iterable<UserPo> findAllByStatus(Boolean status);
 }
