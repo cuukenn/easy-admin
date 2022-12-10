@@ -15,8 +15,7 @@
  */
 package io.github.cuukenn.easyadmin.module.system.service.permission;
 
-import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.RoleCreateVo;
-import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.RoleUpdateVo;
+import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.RoleVo;
 import io.github.cuukenn.easyadmin.module.system.service.permission.dto.RoleDto;
 import io.github.cuukenn.easyframework.core.vo.PageReqVo;
 import io.github.cuukenn.easyframework.core.vo.PageWrapper;
@@ -63,14 +62,14 @@ public interface IRoleService {
 	 *
 	 * @param vo 创建数据
 	 */
-	void create(RoleCreateVo vo);
+	void create(RoleVo.RoleCreateVo vo);
 
 	/**
 	 * 更新角色
 	 *
 	 * @param vo 更新数据
 	 */
-	void update(RoleUpdateVo vo);
+	void update(RoleVo.RoleUpdateVo vo);
 
 	/**
 	 * 更新角色状态

@@ -15,10 +15,8 @@
  */
 package io.github.cuukenn.easyadmin.module.system.controller.admin.permission;
 
-import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.MenuCreateReqVo;
-import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.MenuResVo;
+import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.MenuVo;
 import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.MenuTreeResVo;
-import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.MenuUpdateReqVo;
 import io.github.cuukenn.easyadmin.module.system.controller.vo.SelectTreeResVo;
 import io.github.cuukenn.easyadmin.module.system.controller.vo.UpdateStatus;
 import io.github.cuukenn.easyadmin.module.system.converter.permission.MenuConverter;
@@ -69,20 +67,20 @@ public class MenuController {
 
 	@Operation(summary = "获取菜单项")
 	@GetMapping("/get")
-	public ApiResult<MenuResVo> get(@Valid @NotNull Long menuId) {
+	public ApiResult<MenuVo.MenuResVo> get(@Valid @NotNull Long menuId) {
 		return ApiResult.success(MenuConverter.INSTANCE.toMenuResVo(service.get(menuId)));
 	}
 
 	@Operation(summary = "创建菜单项")
 	@PostMapping("/create")
-	public ApiResult<Boolean> create(@Validated(value = {InsertGroup.class, Default.class}) @RequestBody MenuCreateReqVo vo) {
+	public ApiResult<Boolean> create(@Validated(value = {InsertGroup.class, Default.class}) @RequestBody MenuVo.MenuCreateReqVo vo) {
 		service.create(vo);
 		return ApiResult.success(true);
 	}
 
 	@Operation(summary = "更新菜单项")
 	@PutMapping("/update")
-	public ApiResult<Boolean> update(@Validated @RequestBody MenuUpdateReqVo vo) {
+	public ApiResult<Boolean> update(@Validated @RequestBody MenuVo.MenuUpdateReqVo vo) {
 		service.update(vo);
 		return ApiResult.success(true);
 	}

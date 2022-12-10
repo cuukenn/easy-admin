@@ -30,11 +30,29 @@ import javax.validation.constraints.NotNull;
 @Schema(title = "日志级别基础Vo")
 @Data
 @ToString
-public class LogLevelBaseVo {
+public class LogLevelVo {
 	@Schema(title = "日志名称")
 	@NotBlank(groups = {UpdateGroup.class}, message = "日志名称不能为空")
 	private String name;
 	@Schema(title = "日志级别")
 	@NotNull(groups = {UpdateGroup.class}, message = "日志级别不能为空")
 	private LogLevel level;
+
+    /**
+     * @author changgg
+     */
+    @Schema(title = "日志级别Vo")
+    @Data
+    @ToString
+    public static class LogLevelResVo extends LogLevelVo {
+    }
+
+    /**
+     * @author changgg
+     */
+    @Schema(title = "日志级别更新Vo")
+    @Data
+    @ToString
+    public static class LogLevelUpdateReqVo extends LogLevelVo {
+    }
 }

@@ -25,6 +25,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author changgg
@@ -32,7 +33,7 @@ import java.io.Serializable;
 @Schema(title = "菜单基础信息Vo")
 @Data
 @ToString
-public class MenuBaseVo implements Serializable {
+public class MenuVo implements Serializable {
 	@Schema(title = "父菜单id")
 	@NotNull(message = "菜单名称长度不符合要求")
 	private Long parentId;
@@ -57,4 +58,40 @@ public class MenuBaseVo implements Serializable {
 	@Schema(title = "菜单类型")
 	@NotNull(groups = InsertGroup.class, message = "菜单类型不为为null")
 	private MenuType type;
+
+    /**
+     * @author changgg
+     */
+    @Schema(title = "菜单创建Vo")
+    @Data
+    @ToString
+    public static class MenuCreateReqVo extends MenuVo {
+    }
+
+	/**
+	 * @author changgg
+	 */
+	@Schema(title = "菜单更新Vo")
+	@Data
+	@ToString
+	public static class MenuUpdateReqVo extends MenuVo {
+		@Schema(title = "菜单id")
+		@NotNull(message = "菜单id不能为null")
+		private Long id;
+	}
+
+	/**
+	 * @author changgg
+	 */
+	@Schema(title = "菜单响应Vo")
+	@Data
+	@ToString
+	public static class MenuResVo extends MenuVo {
+		@Schema(title = "菜单id")
+		private Long id;
+		@Schema(title = "开启状态:true 开启,false 关闭")
+		private Boolean status;
+		@Schema(title = "创建时间")
+		private Date createTime;
+	}
 }

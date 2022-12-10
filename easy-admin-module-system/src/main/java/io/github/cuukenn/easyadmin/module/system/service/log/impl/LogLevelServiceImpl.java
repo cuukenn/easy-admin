@@ -16,8 +16,8 @@
 package io.github.cuukenn.easyadmin.module.system.service.log.impl;
 
 import cn.hutool.core.util.StrUtil;
+import io.github.cuukenn.easyadmin.module.system.controller.admin.log.vo.LogLevelVo;
 import io.github.cuukenn.easyadmin.module.system.controller.admin.log.vo.LogLevelPageFilterReqVo;
-import io.github.cuukenn.easyadmin.module.system.controller.admin.log.vo.LogLevelUpdateReqVo;
 import io.github.cuukenn.easyadmin.module.system.service.log.ILogLevelService;
 import io.github.cuukenn.easyadmin.module.system.service.log.dto.LogLevelDto;
 import io.github.cuukenn.easyframework.core.vo.PageWrapper;
@@ -58,7 +58,7 @@ public class LogLevelServiceImpl implements ILogLevelService, InitializingBean {
 	}
 
 	@Override
-	public void update(LogLevelUpdateReqVo vo) {
+	public void update(LogLevelVo.LogLevelUpdateReqVo vo) {
 		loggingSystem.setLogLevel(vo.getName(), vo.getLevel());
 	}
 

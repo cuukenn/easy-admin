@@ -29,7 +29,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class MenuTreeResVo extends MenuResVo {
+public class MenuTreeResVo extends MenuVo.MenuResVo {
 	@Schema(title = "子菜单")
 	private List<MenuTreeResVo> children;
 }

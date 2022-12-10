@@ -15,8 +15,8 @@
  */
 package io.github.cuukenn.easyadmin.module.system.service.log;
 
+import io.github.cuukenn.easyadmin.module.system.controller.admin.log.vo.LogLevelVo;
 import io.github.cuukenn.easyadmin.module.system.controller.admin.log.vo.LogLevelPageFilterReqVo;
-import io.github.cuukenn.easyadmin.module.system.controller.admin.log.vo.LogLevelUpdateReqVo;
 import io.github.cuukenn.easyadmin.module.system.service.log.dto.LogLevelDto;
 import io.github.cuukenn.easyframework.core.vo.PageWrapper;
 
@@ -37,7 +37,7 @@ public interface ILogLevelService {
 	 *
 	 * @param vo vo
 	 */
-	void update(LogLevelUpdateReqVo vo);
+	void update(LogLevelVo.LogLevelUpdateReqVo vo);
 
 	/**
 	 * 重置为初始日志级别

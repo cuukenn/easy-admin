@@ -17,8 +17,7 @@ package io.github.cuukenn.easyadmin.module.system.service.permission.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
-import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.RoleCreateVo;
-import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.RoleUpdateVo;
+import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.RoleVo;
 import io.github.cuukenn.easyadmin.module.system.converter.permission.RoleConverter;
 import io.github.cuukenn.easyadmin.module.system.dao.RolePo;
 import io.github.cuukenn.easyadmin.module.system.dao.repository.RoleRepository;
@@ -77,14 +76,14 @@ public class RoleServiceImpl implements IRoleService {
 	}
 
 	@Override
-	public void create(RoleCreateVo vo) {
+	public void create(RoleVo.RoleCreateVo vo) {
 		RolePo po = RoleConverter.INSTANCE.toRolePo(vo);
 		this.checkUnique(po);
 		repository.save(po);
 	}
 
 	@Override
-	public void update(RoleUpdateVo vo) {
+	public void update(RoleVo.RoleUpdateVo vo) {
 		RolePo po = repository.findById(vo.getId()).orElseThrow(() -> {
 			throw new BizException(-602, "指定角色不存在,id=" + vo.getId());
 		});

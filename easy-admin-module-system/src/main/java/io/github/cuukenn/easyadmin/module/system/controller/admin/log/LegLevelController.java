@@ -15,9 +15,8 @@
  */
 package io.github.cuukenn.easyadmin.module.system.controller.admin.log;
 
+import io.github.cuukenn.easyadmin.module.system.controller.admin.log.vo.LogLevelVo;
 import io.github.cuukenn.easyadmin.module.system.controller.admin.log.vo.LogLevelPageFilterReqVo;
-import io.github.cuukenn.easyadmin.module.system.controller.admin.log.vo.LogLevelResVo;
-import io.github.cuukenn.easyadmin.module.system.controller.admin.log.vo.LogLevelUpdateReqVo;
 import io.github.cuukenn.easyadmin.module.system.converter.log.LogLevelConverter;
 import io.github.cuukenn.easyadmin.module.system.service.log.ILogLevelService;
 import io.github.cuukenn.easyadmin.module.system.service.log.dto.LogLevelDto;
@@ -50,14 +49,14 @@ public class LegLevelController {
 
 	@Operation(summary = "日志级别分页数据")
 	@GetMapping("/page")
-	public ApiResult<PageWrapper<LogLevelResVo>> page(@Valid LogLevelPageFilterReqVo vo) {
+	public ApiResult<PageWrapper<LogLevelVo.LogLevelResVo>> page(@Valid LogLevelPageFilterReqVo vo) {
 		PageWrapper<LogLevelDto> wrapper = service.page(vo);
 		return ApiResult.success(PageWrapper.transform(wrapper, LogLevelConverter.INSTANCE::toLogLevelResVo));
 	}
 
 	@Operation(summary = "更新日志级别")
 	@PutMapping("/update")
-	public ApiResult<Boolean> update(@Validated(UpdateGroup.class) @RequestBody LogLevelUpdateReqVo vo) {
+	public ApiResult<Boolean> update(@Validated(UpdateGroup.class) @RequestBody LogLevelVo.LogLevelUpdateReqVo vo) {
 		service.update(vo);
 		return ApiResult.success(true);
 	}

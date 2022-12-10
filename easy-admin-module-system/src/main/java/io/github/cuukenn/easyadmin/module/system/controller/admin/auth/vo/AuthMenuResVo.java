@@ -15,7 +15,7 @@
  */
 package io.github.cuukenn.easyadmin.module.system.controller.admin.auth.vo;
 
-import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.MenuBaseVo;
+import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.MenuVo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.ToString;
@@ -28,7 +28,7 @@ import java.util.List;
 @Schema(title = "菜单权限列表Vo")
 @Data
 @ToString
-public class AuthMenuResVo extends MenuBaseVo {
+public class AuthMenuResVo extends MenuVo {
 	/**
 	 * id
 	 */

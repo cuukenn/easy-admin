@@ -15,7 +15,7 @@
  */
 package io.github.cuukenn.easyadmin.module.system.converter.log;
 
-import io.github.cuukenn.easyadmin.module.system.controller.admin.log.vo.LogLevelResVo;
+import io.github.cuukenn.easyadmin.module.system.controller.admin.log.vo.LogLevelVo;
 import io.github.cuukenn.easyadmin.module.system.service.log.dto.LogLevelDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.NullValuePropertyMappingStrategy;
@@ -34,5 +34,5 @@ public interface LogLevelConverter {
 	 * @param dto dto
 	 * @return vo
 	 */
-	LogLevelResVo toLogLevelResVo(LogLevelDto dto);
+	LogLevelVo.LogLevelResVo toLogLevelResVo(LogLevelDto dto);
 }

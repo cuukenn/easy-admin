@@ -15,8 +15,7 @@
  */
 package io.github.cuukenn.easyadmin.module.system.service.permission;
 
-import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.MenuCreateReqVo;
-import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.MenuUpdateReqVo;
+import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.MenuVo;
 import io.github.cuukenn.easyadmin.module.system.enums.MenuType;
 import io.github.cuukenn.easyadmin.module.system.service.permission.dto.MenuDto;
 
@@ -64,14 +63,14 @@ public interface IMenuService {
 	 *
 	 * @param vo 创建数据
 	 */
-	void create(MenuCreateReqVo vo);
+	void create(MenuVo.MenuCreateReqVo vo);
 
 	/**
 	 * 更新菜单
 	 *
 	 * @param vo 更新数据
 	 */
-	void update(MenuUpdateReqVo vo);
+	void update(MenuVo.MenuUpdateReqVo vo);
 
 	/**
 	 * 更新菜单状态

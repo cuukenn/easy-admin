@@ -15,11 +15,7 @@
  */
 package io.github.cuukenn.easyadmin.module.system.converter.permission;
 
-import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.MenuCreateReqVo;
-import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.RoleCreateVo;
-import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.RoleResVo;
-import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.RoleUpdateVo;
-import io.github.cuukenn.easyadmin.module.system.dao.MenuPo;
+import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.RoleVo;
 import io.github.cuukenn.easyadmin.module.system.dao.RolePo;
 import io.github.cuukenn.easyadmin.module.system.service.permission.dto.RoleDto;
 import org.mapstruct.Mapper;
@@ -43,14 +39,14 @@ public interface RoleConverter {
 	 * @param vo vo
 	 * @return po
 	 */
-	RolePo toRolePo(RoleCreateVo vo);
+	RolePo toRolePo(RoleVo.RoleCreateVo vo);
 	/**
 	 * dto2vo
 	 *
 	 * @param dto dto
 	 * @return vo
 	 */
-	RoleResVo toRoleResVo(RoleDto dto);
+	RoleVo.RoleResVo toRoleResVo(RoleDto dto);
 
 	/**
 	 * po2dto
@@ -75,5 +71,5 @@ public interface RoleConverter {
 	 * @param po target
 	 */
 	@Mapping(target = "id", ignore = true)
-	void update(RoleUpdateVo vo, @MappingTarget RolePo po);
+	void update(RoleVo.RoleUpdateVo vo, @MappingTarget RolePo po);
 }

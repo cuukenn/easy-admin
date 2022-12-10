@@ -15,10 +15,8 @@
  */
 package io.github.cuukenn.easyadmin.module.system.converter.permission;
 
-import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.MenuCreateReqVo;
-import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.MenuResVo;
+import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.MenuVo;
 import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.MenuTreeResVo;
-import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.MenuUpdateReqVo;
 import io.github.cuukenn.easyadmin.module.system.controller.vo.SelectTreeResVo;
 import io.github.cuukenn.easyadmin.module.system.dao.MenuPo;
 import io.github.cuukenn.easyadmin.module.system.enums.TreeNode;
@@ -50,7 +48,7 @@ public interface MenuConverter {
 	 * @param vo vo
 	 * @return po
 	 */
-	MenuPo toMenuPo(MenuCreateReqVo vo);
+	MenuPo toMenuPo(MenuVo.MenuCreateReqVo vo);
 
 	/**
 	 * po2dto
@@ -83,7 +81,7 @@ public interface MenuConverter {
 	 * @param dto dto
 	 * @return vo
 	 */
-	MenuResVo toMenuResVo(MenuDto dto);
+	MenuVo.MenuResVo toMenuResVo(MenuDto dto);
 
 	/**
 	 * dto2vo
@@ -101,7 +99,7 @@ public interface MenuConverter {
 	 * @param dto dto
 	 * @return vo
 	 */
-	List<MenuResVo> toMenuResVo(List<MenuDto> dto);
+	List<MenuVo.MenuResVo> toMenuResVo(List<MenuDto> dto);
 
 	/**
 	 * vo更新到po
@@ -110,7 +108,7 @@ public interface MenuConverter {
 	 * @param po target
 	 */
 	@Mapping(target = "id", ignore = true)
-	void update(MenuUpdateReqVo vo, @MappingTarget MenuPo po);
+	void update(MenuVo.MenuUpdateReqVo vo, @MappingTarget MenuPo po);
 
 	/**
 	 * 树形转换

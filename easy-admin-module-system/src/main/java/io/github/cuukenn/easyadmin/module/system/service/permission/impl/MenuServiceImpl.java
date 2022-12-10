@@ -17,8 +17,7 @@ package io.github.cuukenn.easyadmin.module.system.service.permission.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
-import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.MenuCreateReqVo;
-import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.MenuUpdateReqVo;
+import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.MenuVo;
 import io.github.cuukenn.easyadmin.module.system.converter.permission.MenuConverter;
 import io.github.cuukenn.easyadmin.module.system.dao.MenuPo;
 import io.github.cuukenn.easyadmin.module.system.dao.repository.MenuRepository;
@@ -70,7 +69,7 @@ public class MenuServiceImpl implements IMenuService {
 	}
 
 	@Override
-	public void create(MenuCreateReqVo vo) {
+	public void create(MenuVo.MenuCreateReqVo vo) {
 		MenuPo po = MenuConverter.INSTANCE.toMenuPo(vo);
 		if (po.getParentId() == null) {
 			po.setParentId(TreeNode.ROOT.getId());
@@ -80,7 +79,7 @@ public class MenuServiceImpl implements IMenuService {
 	}
 
 	@Override
-	public void update(MenuUpdateReqVo vo) {
+	public void update(MenuVo.MenuUpdateReqVo vo) {
 		MenuPo po = repository.findById(vo.getId()).orElseThrow(() -> {
 			throw new BizException(-602, "指定菜单不存在,id=" + vo.getId());
 		});

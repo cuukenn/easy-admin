@@ -15,9 +15,7 @@
  */
 package io.github.cuukenn.easyadmin.module.system.controller.admin.permission;
 
-import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.RoleCreateVo;
-import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.RoleResVo;
-import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.RoleUpdateVo;
+import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.RoleVo;
 import io.github.cuukenn.easyadmin.module.system.controller.vo.UpdateStatus;
 import io.github.cuukenn.easyadmin.module.system.service.permission.IRoleService;
 import io.github.cuukenn.easyadmin.module.system.service.permission.dto.RoleDto;
@@ -55,27 +53,27 @@ public class RoleController {
 
 	@Operation(summary = "角色列表")
 	@GetMapping("/list")
-	public ApiResult<PageWrapper<RoleResVo>> list(@Valid PageReqVo vo) {
+	public ApiResult<PageWrapper<RoleVo.RoleResVo>> list(@Valid PageReqVo vo) {
 		PageWrapper<RoleDto> wrapper = service.list(vo);
 		return ApiResult.success(PageWrapper.transform(wrapper, RoleConverter.INSTANCE::toRoleResVo));
 	}
 
 	@Operation(summary = "获取角色")
 	@GetMapping("/get")
-	public ApiResult<RoleResVo> get(@Valid @NotNull Long roleId) {
+	public ApiResult<RoleVo.RoleResVo> get(@Valid @NotNull Long roleId) {
 		return ApiResult.success(RoleConverter.INSTANCE.toRoleResVo(service.get(roleId)));
 	}
 
 	@Operation(summary = "创建角色")
 	@PostMapping("/create")
-	public ApiResult<Boolean> create(@Validated(value = {InsertGroup.class, Default.class}) @RequestBody RoleCreateVo vo) {
+	public ApiResult<Boolean> create(@Validated(value = {InsertGroup.class, Default.class}) @RequestBody RoleVo.RoleCreateVo vo) {
 		service.create(vo);
 		return ApiResult.success(true);
 	}
 
 	@Operation(summary = "更新角色")
 	@PutMapping("/update")
-	public ApiResult<Boolean> update(@Validated @RequestBody RoleUpdateVo vo) {
+	public ApiResult<Boolean> update(@Validated @RequestBody RoleVo.RoleUpdateVo vo) {
 		service.update(vo);
 		return ApiResult.success(true);
 	}
