@@ -36,6 +36,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * @author changgg
@@ -82,6 +87,13 @@ public class MenuPo extends AbstractJpaEntityBool {
 	@Comment("菜单状态(开启/关闭)")
 	@ColumnDefault(value = "false")
 	private Boolean status;
+	@SuppressWarnings("JpaDataSourceORMInspection")
+	@ManyToMany
+	@JoinTable(name = "sys_role_menu",
+		joinColumns = @JoinColumn(name = "role_id"),
+		inverseJoinColumns = @JoinColumn(name = "menu_id"))
+	@ToString.Exclude
+	private Set<UserPo> users = new LinkedHashSet<>();
 
 	@Override
 	public Long getId() {
@@ -91,5 +103,15 @@ public class MenuPo extends AbstractJpaEntityBool {
 	@Override
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		return super.equals(object);
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
 	}
 }

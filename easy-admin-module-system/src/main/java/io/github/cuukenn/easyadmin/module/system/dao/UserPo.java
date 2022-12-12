@@ -34,6 +34,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * @author changgg
@@ -76,6 +81,13 @@ public class UserPo extends AbstractJpaEntityBool {
 	@ColumnDefault(value = "false")
 	@Comment("状态(开启/关闭)")
 	private Boolean status;
+	@SuppressWarnings("JpaDataSourceORMInspection")
+	@ManyToMany
+	@JoinTable(name = "sys_user_role",
+		joinColumns = @JoinColumn(name = "user_id"),
+		inverseJoinColumns = @JoinColumn(name = "role_id"))
+	@ToString.Exclude
+	private Set<RolePo> roles = new LinkedHashSet<>();
 
 	@Override
 	public Long getId() {
@@ -85,5 +97,15 @@ public class UserPo extends AbstractJpaEntityBool {
 	@Override
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		return super.equals(object);
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
 	}
 }

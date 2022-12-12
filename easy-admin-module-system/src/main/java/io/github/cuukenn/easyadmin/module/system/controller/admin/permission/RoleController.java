@@ -17,9 +17,9 @@ package io.github.cuukenn.easyadmin.module.system.controller.admin.permission;
 
 import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.RoleVo;
 import io.github.cuukenn.easyadmin.module.system.controller.vo.UpdateStatus;
+import io.github.cuukenn.easyadmin.module.system.converter.permission.RoleConverter;
 import io.github.cuukenn.easyadmin.module.system.service.permission.IRoleService;
 import io.github.cuukenn.easyadmin.module.system.service.permission.dto.RoleDto;
-import io.github.cuukenn.easyadmin.module.system.converter.permission.RoleConverter;
 import io.github.cuukenn.easyframework.core.vo.ApiResult;
 import io.github.cuukenn.easyframework.core.vo.PageReqVo;
 import io.github.cuukenn.easyframework.core.vo.PageWrapper;
@@ -40,6 +40,8 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.groups.Default;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author changgg
@@ -50,6 +52,13 @@ import javax.validation.groups.Default;
 @RequiredArgsConstructor
 public class RoleController {
 	private final IRoleService service;
+
+	@Operation(summary = "角色列表")
+	@GetMapping("/list/all")
+	public ApiResult<List<RoleVo.RoleResVo>> list() {
+		List<RoleDto> list = service.list(true);
+		return ApiResult.success(list.stream().map(RoleConverter.INSTANCE::toRoleResVo).collect(Collectors.toList()));
+	}
 
 	@Operation(summary = "角色列表")
 	@GetMapping("/list")

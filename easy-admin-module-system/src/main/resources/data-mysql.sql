@@ -1,3 +1,17 @@
+INSERT INTO sys_user(`id`, `username`, `nickname`, `gender`, `avatar`, `location`, `email`, `status`,
+                     `deleted`, `created_by`, `last_modified_by`, `created_time`, `last_modified_time`)
+VALUES (1, 'admin', '管理员1', 0, '1.png', '北京市', '123456@abc.com', true, 0, -1, -1, now(), now()),
+       (2, 'user', '普通用户1', 2, '1.png', '四川省', '123456@abc.com', true, 0, -1, -1, now(), now());
+
+INSERT INTO sys_role(`id`, `name`, `permission`, `description`, `status`,
+                     `deleted`, `created_by`, `last_modified_by`, `created_time`, `last_modified_time`)
+VALUES (1, '管理员', 'ADMIN', '管理员账户，具备所有权限', true, 0, -1, -1, now(), now()),
+       (2, '普通用户', 'USER', '普通账户，仅具备普通权限', true, 0, -1, -1, now(), now());
+
+INSERT INTO sys_user_role(`user_id`, `role_id`)
+VALUES (1, 1),
+       (2, 2);
+
 INSERT INTO sys_menu(`id`, `parent_id`, `name`, `icon`, `number`, `router_path`, `component_path`, `permission`,
                      `type`, `status`,
                      `deleted`, `created_by`, `last_modified_by`, `created_time`, `last_modified_time`)
@@ -18,3 +32,7 @@ VALUES (1, -1, '系统管理', 'setting', 0, 'system', null, null, 0, true, 0, -
        (15, 14, '接口列表', 'document', 0, 'api', 'infra/api', null, 1, true, 0, -1, -1, now(), now()),
        (16, 1, '日志管理', 'document', 4, 'log', null, null, 0, true, 0, -1, -1, now(), now()),
        (17, 16, '日志级别', 'IceCreamSquare', 0, 'level', 'system/log/level', null, 1, true, 0, -1, -1, now(), now());
+
+INSERT INTO sys_role_menu(`role_id`, `menu_id`)
+VALUES (2, 1),
+       (2, 14);

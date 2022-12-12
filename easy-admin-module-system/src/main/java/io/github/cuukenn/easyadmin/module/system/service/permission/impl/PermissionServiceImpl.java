@@ -15,18 +15,19 @@
  */
 package io.github.cuukenn.easyadmin.module.system.service.permission.impl;
 
-import cn.hutool.core.collection.CollectionUtil;
+import io.github.cuukenn.easyadmin.module.system.enums.InnerRoleType;
 import io.github.cuukenn.easyadmin.module.system.enums.MenuType;
 import io.github.cuukenn.easyadmin.module.system.service.permission.IMenuService;
 import io.github.cuukenn.easyadmin.module.system.service.permission.IPermissionService;
 import io.github.cuukenn.easyadmin.module.system.service.permission.IRoleService;
+import io.github.cuukenn.easyadmin.module.system.service.permission.IUserService;
 import io.github.cuukenn.easyadmin.module.system.service.permission.dto.MenuDto;
 import io.github.cuukenn.easyadmin.module.system.service.permission.dto.RoleDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -38,16 +39,65 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Slf4j
 public class PermissionServiceImpl implements IPermissionService {
+	private final IUserService userService;
 	private final IRoleService roleService;
 	private final IMenuService menuService;
 
 	@Override
-	public Set<Long> getUserRoleIds(Long userId, Boolean status) {
-		return CollectionUtil.list(false, roleService.list(status)).stream().map(RoleDto::getId).collect(Collectors.toSet());
+	public List<RoleDto> getUserRoles(Long userId, Boolean status) {
+		return userService.getInvokedRoles(userId).stream().filter(item -> item.getStatus().equals(status)).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<MenuDto> getRoleMenus(Set<Long> roleIds, Set<MenuType> types, Boolean status) {
-		return new ArrayList<>(CollectionUtil.list(false, menuService.list(types, status)));
+	public List<MenuDto> getRoleMenus(Long roleId, Set<MenuType> types, Boolean status) {
+		String permission = roleService.get(roleId).getPermission();
+		if (InnerRoleType.ADMIN.getPermission().equals(permission)) {
+			return menuService.list(types, status);
+		} else {
+			return roleService.getInvokedMenus(roleId).stream()
+				.filter(item -> item.getStatus().equals(status))
+				.filter(item -> types.contains(item.getType()))
+				.collect(Collectors.toList());
+		}
+	}
+
+	@SuppressWarnings("DuplicatedCode")
+	@Override
+	@Transactional(rollbackFor = RuntimeException.class)
+	public void completeInvokeUserRoles(Long id, Set<Long> roleIds) {
+		if (roleIds == null) {
+			return;
+		}
+		//过滤符合条件的角色
+		Set<Long> filteredRoles = roleIds.stream().filter(roleId -> roleService.exist(roleId, true)).collect(Collectors.toSet());
+		if (filteredRoles.isEmpty()) {
+			return;
+		}
+		//提取待撤销的授权和待新增的授权
+		Set<Long> invoked = userService.getInvokedRoles(id).stream().map(RoleDto::getId).collect(Collectors.toSet());
+		Set<Long> invokes = roleIds.stream().filter(roleId -> !invoked.contains(roleId)).collect(Collectors.toSet());
+		Set<Long> revokes = invoked.stream().filter(roleId -> !roleIds.contains(roleId)).collect(Collectors.toSet());
+		userService.revokeRoles(id, revokes);
+		userService.invokeRoles(id, invokes);
+	}
+
+	@SuppressWarnings("DuplicatedCode")
+	@Override
+	@Transactional(rollbackFor = RuntimeException.class)
+	public void completeInvokeRoleMenus(Long id, Set<Long> menuIds) {
+		if (menuIds == null) {
+			return;
+		}
+		//过滤符合条件的角色
+		Set<Long> filteredRoles = menuIds.stream().filter(roleId -> roleService.exist(id, true)).collect(Collectors.toSet());
+		if (filteredRoles.isEmpty()) {
+			return;
+		}
+		//提取待撤销的授权和待新增的授权
+		Set<Long> invoked = roleService.getInvokedMenus(id).stream().map(MenuDto::getId).collect(Collectors.toSet());
+		Set<Long> invokes = menuIds.stream().filter(menuId -> !invoked.contains(menuId)).collect(Collectors.toSet());
+		Set<Long> revokes = invoked.stream().filter(menuId -> !menuIds.contains(menuId)).collect(Collectors.toSet());
+		roleService.revokeMenus(id, revokes);
+		roleService.invokeMenus(id, invokes);
 	}
 }

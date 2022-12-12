@@ -24,12 +24,12 @@ import java.util.Set;
 /**
  * @author changgg
  */
-@Schema(title = "权限：角色菜单授权reqVo")
+@Schema(title = "权限：用户授权reqVo")
 @Data
 @ToString
-public class MenuInvokeReqVo {
-	@Schema(title = "角色id")
-	private Long roleId;
-	@Schema(title = "待授权菜单ids")
-	private Set<Long> menuIds;
+public class InvokeReqVo {
+	@Schema(title = "用户id")
+	private Long id;
+	@Schema(title = "待授权ids")
+	private Set<Long> ids;
 }

@@ -21,6 +21,7 @@ import io.github.cuukenn.easyadmin.module.system.converter.auth.AuthConverter;
 import io.github.cuukenn.easyadmin.module.system.enums.MenuType;
 import io.github.cuukenn.easyadmin.module.system.service.permission.IPermissionService;
 import io.github.cuukenn.easyadmin.module.system.service.permission.dto.MenuDto;
+import io.github.cuukenn.easyadmin.module.system.service.permission.dto.RoleDto;
 import io.github.cuukenn.easyframework.core.vo.ApiResult;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -29,8 +30,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author changgg
@@ -45,8 +48,13 @@ public class AuthController {
 	@Operation(summary = "获取当前用户菜单列表")
 	@GetMapping("/list/menus")
 	public ApiResult<List<AuthMenuResVo>> listMenus() {
-		Set<Long> roleIds = permissionService.getUserRoleIds(null, true);
-		List<MenuDto> roleMenus = permissionService.getRoleMenus(roleIds, CollectionUtil.set(false, MenuType.DIR, MenuType.MENU), true);
+		//TODO 获取实际登录id
+		Set<Long> roleIds = permissionService.getUserRoles(1L, true).stream().map(RoleDto::getId).collect(Collectors.toSet());
+		List<MenuDto> roleMenus = new ArrayList<>();
+		roleIds.forEach(id -> {
+			List<MenuDto> menus = permissionService.getRoleMenus(id, CollectionUtil.set(false, MenuType.DIR, MenuType.MENU), true);
+			roleMenus.addAll(menus);
+		});
 		return ApiResult.success(AuthConverter.INSTANCE.toMenuTree(roleMenus));
 	}
 }

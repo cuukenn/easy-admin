@@ -33,6 +33,15 @@ import java.util.List;
 @Mapper(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface RoleConverter {
 	RoleConverter INSTANCE = Mappers.getMapper(RoleConverter.class);
+
+	/**
+	 * dto2po
+	 *
+	 * @param dto dto
+	 * @return po
+	 */
+	RolePo toRolePo(RoleDto dto);
+
 	/**
 	 * vo2po
 	 *
@@ -40,6 +49,7 @@ public interface RoleConverter {
 	 * @return po
 	 */
 	RolePo toRolePo(RoleVo.RoleCreateVo vo);
+
 	/**
 	 * dto2vo
 	 *
@@ -71,5 +81,6 @@ public interface RoleConverter {
 	 * @param po target
 	 */
 	@Mapping(target = "id", ignore = true)
+	@Mapping(target = "permission", expression = "java(java.util.Optional.ofNullable(po.getPermission()).map(String::toUpperCase).orElse(null))")
 	void update(RoleVo.RoleUpdateVo vo, @MappingTarget RolePo po);
 }

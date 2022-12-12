@@ -18,10 +18,13 @@ package io.github.cuukenn.easyadmin.module.system.service.permission.impl;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.UserVo;
+import io.github.cuukenn.easyadmin.module.system.converter.permission.RoleConverter;
 import io.github.cuukenn.easyadmin.module.system.converter.permission.UserConverter;
 import io.github.cuukenn.easyadmin.module.system.dao.UserPo;
 import io.github.cuukenn.easyadmin.module.system.dao.repository.UserRepository;
+import io.github.cuukenn.easyadmin.module.system.service.permission.IRoleService;
 import io.github.cuukenn.easyadmin.module.system.service.permission.IUserService;
+import io.github.cuukenn.easyadmin.module.system.service.permission.dto.RoleDto;
 import io.github.cuukenn.easyadmin.module.system.service.permission.dto.UserDto;
 import io.github.cuukenn.easyframework.core.exception.BizException;
 import io.github.cuukenn.easyframework.core.vo.PageReqVo;
@@ -36,6 +39,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author changgg
@@ -44,13 +49,41 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class UserServiceImpl implements IUserService {
+	public static final String ADMIN = "admin";
 	private final UserRepository repository;
+	private final IRoleService roleService;
+
+	@Override
+	public void invokeRoles(Long id, Set<Long> roleIds) {
+		UserPo po = repository.findById(id).orElseThrow(() -> {
+			throw new BizException(-602, "指定用户不存在,id=" + id);
+		});
+		po.getRoles().addAll(roleIds.stream().map(roleService::get).map(RoleConverter.INSTANCE::toRolePo).collect(Collectors.toSet()));
+		repository.save(po);
+	}
+
+	@Override
+	public void revokeRoles(Long id, Set<Long> roleIds) {
+		UserPo po = repository.findById(id).orElseThrow(() -> {
+			throw new BizException(-602, "指定用户不存在,id=" + id);
+		});
+		po.getRoles().removeAll(roleIds.stream().map(roleService::get).map(RoleConverter.INSTANCE::toRolePo).collect(Collectors.toSet()));
+		repository.save(po);
+	}
 
 	@Override
 	public UserDto get(Long id) {
 		return UserConverter.INSTANCE.toUserDto(repository.findById(id).orElseThrow(() -> {
 			throw new BizException(-602, "指定用户不存在,id=" + id);
 		}));
+	}
+
+	@Override
+	public Set<RoleDto> getInvokedRoles(Long id) {
+		UserPo po = repository.findById(id).orElseThrow(() -> {
+			throw new BizException(-602, "指定用户不存在,id=" + id);
+		});
+		return po.getRoles().stream().map(RoleConverter.INSTANCE::toRoleDto).collect(Collectors.toSet());
 	}
 
 	@Override

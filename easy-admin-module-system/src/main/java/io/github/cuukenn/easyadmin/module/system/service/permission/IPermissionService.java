@@ -17,6 +17,7 @@ package io.github.cuukenn.easyadmin.module.system.service.permission;
 
 import io.github.cuukenn.easyadmin.module.system.enums.MenuType;
 import io.github.cuukenn.easyadmin.module.system.service.permission.dto.MenuDto;
+import io.github.cuukenn.easyadmin.module.system.service.permission.dto.RoleDto;
 
 import java.util.List;
 import java.util.Set;
@@ -32,15 +33,31 @@ public interface IPermissionService {
 	 * @param status 角色状态
 	 * @return 角色集合
 	 */
-	Set<Long> getUserRoleIds(Long userId, Boolean status);
+	List<RoleDto> getUserRoles(Long userId, Boolean status);
 
 	/**
 	 * 获取角色集合对于的菜单
 	 *
-	 * @param roleIds 角色id集合
-	 * @param types   菜单类型
-	 * @param status  角色状态
+	 * @param roleId 角色id
+	 * @param types  菜单类型
+	 * @param status 角色状态
 	 * @return 角色集合
 	 */
-	List<MenuDto> getRoleMenus(Set<Long> roleIds, Set<MenuType> types, Boolean status);
+	List<MenuDto> getRoleMenus(Long roleId, Set<MenuType> types, Boolean status);
+
+	/**
+	 * 授权用户指定角色集(全量授权用户角色，为空全部移除)
+	 *
+	 * @param id      用户id
+	 * @param roleIds 角色id
+	 */
+	void completeInvokeUserRoles(Long id, Set<Long> roleIds);
+
+	/**
+	 * 授权用户指定角色集(全量授权用户角色，为空全部移除)
+	 *
+	 * @param id      用户id
+	 * @param menuIds 菜单id
+	 */
+	void completeInvokeRoleMenus(Long id, Set<Long> menuIds);
 }

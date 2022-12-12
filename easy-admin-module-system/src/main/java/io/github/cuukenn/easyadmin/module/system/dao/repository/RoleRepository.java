@@ -25,6 +25,15 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RoleRepository extends BaseRepository<RolePo> {
 	/**
+	 * 指定id和状态的角色是否存在
+	 *
+	 * @param id     id
+	 * @param status 状态
+	 * @return 是否存在
+	 */
+	boolean existsByIdAndStatus(Long id, Boolean status);
+
+	/**
 	 * 查询指定状态的角色
 	 *
 	 * @param status 角色状态

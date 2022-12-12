@@ -18,10 +18,14 @@ package io.github.cuukenn.easyadmin.module.system.service.permission.impl;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.RoleVo;
+import io.github.cuukenn.easyadmin.module.system.converter.permission.MenuConverter;
 import io.github.cuukenn.easyadmin.module.system.converter.permission.RoleConverter;
 import io.github.cuukenn.easyadmin.module.system.dao.RolePo;
 import io.github.cuukenn.easyadmin.module.system.dao.repository.RoleRepository;
+import io.github.cuukenn.easyadmin.module.system.enums.InnerRoleType;
+import io.github.cuukenn.easyadmin.module.system.service.permission.IMenuService;
 import io.github.cuukenn.easyadmin.module.system.service.permission.IRoleService;
+import io.github.cuukenn.easyadmin.module.system.service.permission.dto.MenuDto;
 import io.github.cuukenn.easyadmin.module.system.service.permission.dto.RoleDto;
 import io.github.cuukenn.easyframework.core.exception.BizException;
 import io.github.cuukenn.easyframework.core.vo.PageReqVo;
@@ -36,6 +40,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author changgg
@@ -45,6 +51,38 @@ import java.util.List;
 @Slf4j
 public class RoleServiceImpl implements IRoleService {
 	private final RoleRepository repository;
+	private final IMenuService menuService;
+
+	@Override
+	public void invokeMenus(Long id, Set<Long> roleIds) {
+		RolePo po = repository.findById(id).orElseThrow(() -> {
+			throw new BizException(-602, "指定角色不存在,id=" + id);
+		});
+		po.getMenus().addAll(roleIds.stream().map(menuService::get).map(MenuConverter.INSTANCE::toMenuPo).collect(Collectors.toSet()));
+		repository.save(po);
+	}
+
+	@Override
+	public void revokeMenus(Long id, Set<Long> roleIds) {
+		RolePo po = repository.findById(id).orElseThrow(() -> {
+			throw new BizException(-602, "指定角色不存在,id=" + id);
+		});
+		po.getMenus().removeAll(roleIds.stream().map(menuService::get).map(MenuConverter.INSTANCE::toMenuPo).collect(Collectors.toSet()));
+		repository.save(po);
+	}
+
+	@Override
+	public Set<MenuDto> getInvokedMenus(Long id) {
+		RolePo po = repository.findById(id).orElseThrow(() -> {
+			throw new BizException(-602, "指定角色不存在,id=" + id);
+		});
+		return po.getMenus().stream().map(MenuConverter.INSTANCE::toMenuDto).collect(Collectors.toSet());
+	}
+
+	@Override
+	public boolean exist(Long id, Boolean status) {
+		return repository.existsByIdAndStatus(id, status);
+	}
 
 	@Override
 	public RoleDto get(Long id) {
@@ -67,10 +105,7 @@ public class RoleServiceImpl implements IRoleService {
 
 	@Override
 	public PageWrapper<RoleDto> list(PageReqVo vo) {
-		Pageable page = PageRequest.of(
-			vo.getPageNum() - 1, vo.getPageSize(),
-			vo.getOrderDesc() ? Sort.Direction.DESC : Sort.Direction.ASC, vo.getOrderColumn()
-		);
+		Pageable page = PageRequest.of(vo.getPageNum() - 1, vo.getPageSize(), vo.getOrderDesc() ? Sort.Direction.DESC : Sort.Direction.ASC, vo.getOrderColumn());
 		Page<RolePo> pages = repository.findAll(page);
 		return new PageWrapper<>(pages.getNumber(), pages.getSize(), pages.getTotalElements(), RoleConverter.INSTANCE.toRoleDto(pages.getContent()));
 	}
@@ -87,6 +122,7 @@ public class RoleServiceImpl implements IRoleService {
 		RolePo po = repository.findById(vo.getId()).orElseThrow(() -> {
 			throw new BizException(-602, "指定角色不存在,id=" + vo.getId());
 		});
+		InnerRoleType.check(po.getPermission());
 		RoleConverter.INSTANCE.update(vo, po);
 		this.checkUnique(po);
 		repository.save(po);

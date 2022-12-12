@@ -19,8 +19,10 @@ import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.
 import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.MenuTreeResVo;
 import io.github.cuukenn.easyadmin.module.system.controller.vo.SelectTreeResVo;
 import io.github.cuukenn.easyadmin.module.system.dao.MenuPo;
+import io.github.cuukenn.easyadmin.module.system.dao.RolePo;
 import io.github.cuukenn.easyadmin.module.system.enums.TreeNode;
 import io.github.cuukenn.easyadmin.module.system.service.permission.dto.MenuDto;
+import io.github.cuukenn.easyadmin.module.system.service.permission.dto.RoleDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
@@ -42,6 +44,13 @@ import java.util.Map;
 public interface MenuConverter {
 	MenuConverter INSTANCE = Mappers.getMapper(MenuConverter.class);
 
+	/**
+	 * dto2po
+	 *
+	 * @param dto dto
+	 * @return po
+	 */
+	MenuPo toMenuPo(MenuDto dto);
 	/**
 	 * vo2po
 	 *

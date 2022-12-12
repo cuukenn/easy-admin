@@ -14,11 +14,8 @@ spring:
     defer-datasource-initialization: true
   sql:
     init:
-      data-locations:
-        - optional:classpath*:sql/user.sql
-        - optional:classpath*:sql/role.sql
-        - optional:classpath*:sql/menu.sql
       mode: always
+      platform: mysql
 management:
   endpoints:
     web:

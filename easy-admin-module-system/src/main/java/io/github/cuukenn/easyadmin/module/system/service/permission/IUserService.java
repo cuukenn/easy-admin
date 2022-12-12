@@ -16,16 +16,42 @@
 package io.github.cuukenn.easyadmin.module.system.service.permission;
 
 import io.github.cuukenn.easyadmin.module.system.controller.admin.permission.vo.UserVo;
+import io.github.cuukenn.easyadmin.module.system.service.permission.dto.RoleDto;
 import io.github.cuukenn.easyadmin.module.system.service.permission.dto.UserDto;
 import io.github.cuukenn.easyframework.core.vo.PageReqVo;
 import io.github.cuukenn.easyframework.core.vo.PageWrapper;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author changgg
  */
 public interface IUserService {
+	/**
+	 * 批量新增角色授权
+	 *
+	 * @param id      id
+	 * @param roleIds 待授权角色
+	 */
+	void invokeRoles(Long id, Set<Long> roleIds);
+
+	/**
+	 * 批量取消角色授权
+	 *
+	 * @param id      id
+	 * @param roleIds 待取消角色授权
+	 */
+	void revokeRoles(Long id, Set<Long> roleIds);
+
+	/**
+	 * 获取指定用户已授权的角色列表
+	 *
+	 * @param id id
+	 * @return 角色列表
+	 */
+	Set<RoleDto> getInvokedRoles(Long id);
+
 	/**
 	 * 获取单个用户数据
 	 *
