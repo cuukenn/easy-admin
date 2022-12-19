@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<groupId>io.github.cuukenn</groupId>
+		<artifactId>easy-framework-parent</artifactId>
+		<version>${revision}</version>
+		<relativePath>../framework-parent</relativePath>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>easy-framework-starter-dynamic-mongo</artifactId>
+	<name>framework-starter-dynamic-mongo</name>
+	<description>Framework Dynamic Mongo Starter For Spring</description>
+	<properties>
+		<main.basedir>${basedir}/../..</main.basedir>
+	</properties>
+	<scm>
+		<connection>${scm.git.connection}</connection>
+		<developerConnection>${scm.git.developerConnection}</developerConnection>
+		<url>${git.url}</url>
+	</scm>
+	<dependencies>
+		<dependency>
+			<groupId>io.github.cuukenn</groupId>
+			<artifactId>easy-framework-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+	</dependencies>
+</project>
