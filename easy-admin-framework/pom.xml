@@ -2,14 +2,30 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>io.github.cuukenn</groupId>
 		<artifactId>easy-admin-parent</artifactId>
 		<version>${revision}</version>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
-	<modelVersion>4.0.0</modelVersion>
+	<artifactId>easy-framework-project</artifactId>
+	<name>framework-project</name>
+	<description>Framework Project Parent Pom</description>
 	<packaging>pom</packaging>
-	<artifactId>easy-admin-framework</artifactId>
 	<modules>
+		<module>framework-core</module>
+		<module>framework-starter-captcha</module>
+		<module>framework-starter-mybatis-plus</module>
+		<module>framework-starter-jpa</module>
+		<module>framework-starter-protection</module>
+		<module>framework-starter-security</module>
+		<module>framework-starter-redis</module>
+		<module>framework-starter-file</module>
+		<module>framework-starter-excel</module>
+		<module>framework-starter-web</module>
+		<module>framework-starter-biz-operation-log</module>
+		<module>framework-starter-biz-social</module>
+		<module>framework-starter-biz-tenant</module>
 	</modules>
 </project>

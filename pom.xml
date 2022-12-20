@@ -4,10 +4,11 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>io.github.cuukenn</groupId>
-		<artifactId>easy-framework-parent</artifactId>
-		<version>0.1.0-SNAPSHOT</version>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<groupId>org.springframework.boot</groupId>
+		<version>2.6.12</version>
 	</parent>
+	<groupId>io.github.cuukenn</groupId>
 	<artifactId>easy-admin-parent</artifactId>
 	<version>${revision}</version>
 	<packaging>pom</packaging>
@@ -75,40 +76,4 @@
 			<artifactId>mapstruct-processor</artifactId>
 		</dependency>
 	</dependencies>
-	<profiles>
-		<!--设置不同环境变量下的差异化配置-->
-		<!--针对spring进行配置并设置dev作为默认启用的spring环境配置-->
-		<profile>
-			<id>dev</id>
-			<properties>
-				<env>dev</env>
-			</properties>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-		</profile>
-		<profile>
-			<id>prod</id>
-			<properties>
-				<env>prod</env>
-			</properties>
-			<build>
-				<resources>
-					<resource>
-						<directory>src/main/resources</directory>
-						<!--生产包剔除敏感文件-->
-						<excludes>
-							<exclude>**/*-dev.xml</exclude>
-							<exclude>**/*-dev.yml</exclude>
-							<exclude>**/*-dev.yaml</exclude>
-							<exclude>**/*-test.xml</exclude>
-							<exclude>**/*-test.yml</exclude>
-							<exclude>**/*-test.yaml</exclude>
-							<exclude>**/*bak</exclude>
-						</excludes>
-					</resource>
-				</resources>
-			</build>
-		</profile>
-	</profiles>
 </project>
