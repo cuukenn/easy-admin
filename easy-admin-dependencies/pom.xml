@@ -9,8 +9,6 @@
 	<packaging>pom</packaging>
 	<name>framework-dependencies</name>
 	<description>Framework Extension Dependencies</description>
-	<url>https://github.com/cuukenn/easy-framework</url>
-	<inceptionYear>2022</inceptionYear>
 	<properties>
 		<revision>0.1.0-SNAPSHOT</revision>
 		<!-- *************************maven基础配置*************************************-->
@@ -21,12 +19,6 @@
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-		<!--		git properties-->
-		<git.url>https://github.com/cuukenn/easy-framework</git.url>
-		<git.url2git>git@github.com:cuukenn/easy-framework.git</git.url2git>
-		<git.issue.url>${git.url}/issues</git.issue.url>
-		<scm.git.connection>scm:git:${git.url2git}</scm.git.connection>
-		<scm.git.developerConnection>scm:git:${git.url2git}</scm.git.developerConnection>
 		<!-- *************************三方依赖版本号**************************************-->
 		<!--        spring系列版本-->
 		<justauth.version>1.4.0</justauth.version>
