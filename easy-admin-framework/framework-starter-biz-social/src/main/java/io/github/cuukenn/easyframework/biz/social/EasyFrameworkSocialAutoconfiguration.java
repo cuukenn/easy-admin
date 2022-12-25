@@ -15,11 +15,14 @@
  */
 package io.github.cuukenn.easyframework.biz.social;
 
+import io.github.cuukenn.easyframework.core.constants.AutoConfigurationOrderConstant;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.context.annotation.Configuration;
 
 /**
  * @author changgg
  */
 @Configuration(proxyBeanMethods = false)
+@AutoConfigureOrder(AutoConfigurationOrderConstant.BIZ_SOCIAL)
 public class EasyFrameworkSocialAutoconfiguration {
 }

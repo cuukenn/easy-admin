@@ -15,6 +15,8 @@
  */
 package io.github.cuukenn.easyframework.jpa;
 
+import io.github.cuukenn.easyframework.core.constants.AutoConfigurationOrderConstant;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
@@ -23,5 +25,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
  */
 @Configuration(proxyBeanMethods = false)
 @EnableJpaAuditing
+@AutoConfigureOrder(AutoConfigurationOrderConstant.JPA)
 public class EasyFrameworkJpaAutoConfiguration {
 }

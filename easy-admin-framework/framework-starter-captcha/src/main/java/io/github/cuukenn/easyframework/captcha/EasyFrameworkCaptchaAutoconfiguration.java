@@ -18,6 +18,8 @@ package io.github.cuukenn.easyframework.captcha;
 import io.github.cuukenn.easyframework.captcha.core.configure.CaptchaServiceConfiguration;
 import io.github.cuukenn.easyframework.captcha.core.properties.CaptchaProperties;
 import io.github.cuukenn.easyframework.captcha.rest.configure.RestConfiguration;
+import io.github.cuukenn.easyframework.core.constants.AutoConfigurationOrderConstant;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -28,5 +30,6 @@ import org.springframework.context.annotation.Import;
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnProperty(prefix = CaptchaProperties.PREFIX, value = "enable", havingValue = "true", matchIfMissing = true)
 @Import({CaptchaServiceConfiguration.class, RestConfiguration.class})
+@AutoConfigureOrder(AutoConfigurationOrderConstant.CAPTCHA)
 public class EasyFrameworkCaptchaAutoconfiguration {
 }

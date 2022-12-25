@@ -15,9 +15,11 @@
  */
 package io.github.cuukenn.easyframework.redis;
 
+import io.github.cuukenn.easyframework.core.constants.AutoConfigurationOrderConstant;
 import io.github.cuukenn.easyframework.redis.cache.configure.RedisCacheConfiguration;
 import io.github.cuukenn.easyframework.redis.core.configure.RedisConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -28,5 +30,6 @@ import org.springframework.context.annotation.Import;
 @Configuration(proxyBeanMethods = false)
 @AutoConfigureAfter(RedisAutoConfiguration.class)
 @Import({RedisCacheConfiguration.class, RedisConfiguration.class})
+@AutoConfigureOrder(AutoConfigurationOrderConstant.REDIS)
 public class EasyFrameworkRedisAutoConfiguration {
 }

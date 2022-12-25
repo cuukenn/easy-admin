@@ -15,8 +15,10 @@
  */
 package io.github.cuukenn.easyframework.tenant;
 
+import io.github.cuukenn.easyframework.core.constants.AutoConfigurationOrderConstant;
 import io.github.cuukenn.easyframework.tenant.core.aop.configure.AopConfiguration;
 import io.github.cuukenn.easyframework.tenant.core.properties.TenantProperties;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -29,5 +31,6 @@ import org.springframework.context.annotation.Import;
 @ConditionalOnProperty(prefix = TenantProperties.PREFIX, name = "enable", havingValue = "true", matchIfMissing = true)
 @EnableConfigurationProperties(TenantProperties.class)
 @Import(AopConfiguration.class)
+@AutoConfigureOrder(AutoConfigurationOrderConstant.BIZ_TENANT)
 public class TenantAutoConfiguration {
 }
