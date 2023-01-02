@@ -27,11 +27,11 @@ import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.annotation.Resource;
-import javax.validation.Valid;
 
 /**
  * @author changgg
  */
+@SuppressWarnings("NullableProblems")
 @Configuration(proxyBeanMethods = false)
 public class WebConfiguration implements WebMvcConfigurer {
 	private static final Logger logger = LoggerFactory.getLogger(WebConfiguration.class);

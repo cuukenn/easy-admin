@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.cuukenn.easyframework.biz.operationlog.aop.properties;
+package io.github.cuukenn.easyframework.biz.operationlog.enhancer.properties;
 
 import org.springframework.core.Ordered;
 

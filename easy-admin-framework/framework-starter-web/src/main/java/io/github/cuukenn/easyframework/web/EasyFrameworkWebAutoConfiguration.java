@@ -15,11 +15,13 @@
  */
 package io.github.cuukenn.easyframework.web;
 
+import io.github.cuukenn.easyframework.core.constants.AutoConfigurationOrderConstant;
 import io.github.cuukenn.easyframework.web.accesslog.configurate.AccessLogConfiguration;
 import io.github.cuukenn.easyframework.web.jackson.configurate.JacksonConfiguration;
 import io.github.cuukenn.easyframework.web.properties.WebProperties;
 import io.github.cuukenn.easyframework.web.rest.configure.RestConfiguration;
 import io.github.cuukenn.easyframework.web.rest.configure.WebConfiguration;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -32,5 +34,6 @@ import org.springframework.context.annotation.Import;
 @ConditionalOnProperty(prefix = WebProperties.PREFIX, name = "enable", havingValue = "true", matchIfMissing = true)
 @EnableConfigurationProperties(WebProperties.class)
 @Import({AccessLogConfiguration.class, RestConfiguration.class, WebConfiguration.class, JacksonConfiguration.class})
+@AutoConfigureOrder(AutoConfigurationOrderConstant.WEB)
 public class EasyFrameworkWebAutoConfiguration {
 }

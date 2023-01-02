@@ -15,7 +15,7 @@
  */
 package io.github.cuukenn.easyframework.web.properties;
 
-import io.github.cuukenn.easyframework.core.EasyFrameworkConstant;
+import io.github.cuukenn.easyframework.core.constants.EasyFrameworkConstant;
 import io.github.cuukenn.easyframework.web.accesslog.properties.AccessLogProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;

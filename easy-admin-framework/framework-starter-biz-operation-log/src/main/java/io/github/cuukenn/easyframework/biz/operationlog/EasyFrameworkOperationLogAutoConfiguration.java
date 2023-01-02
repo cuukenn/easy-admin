@@ -15,9 +15,10 @@
  */
 package io.github.cuukenn.easyframework.biz.operationlog;
 
-import io.github.cuukenn.easyframework.biz.operationlog.aop.configure.OperationLogAopConfiguration;
-import io.github.cuukenn.easyframework.biz.operationlog.dao.OperationRepository;
+import io.github.cuukenn.easyframework.biz.operationlog.enhancer.configure.OperationLogAopConfiguration;
 import io.github.cuukenn.easyframework.biz.operationlog.properties.OperationLogProperties;
+import io.github.cuukenn.easyframework.core.constants.AutoConfigurationOrderConstant;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +30,7 @@ import org.springframework.context.annotation.Import;
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnProperty(prefix = OperationLogProperties.PREFIX, name = "enable", havingValue = "true", matchIfMissing = true)
 @EnableConfigurationProperties(OperationLogProperties.class)
-@Import({OperationLogAopConfiguration.class, OperationRepository.class})
+@Import({OperationLogAopConfiguration.class})
+@AutoConfigureOrder(AutoConfigurationOrderConstant.BIZ_OPERATION_LOG)
 public class EasyFrameworkOperationLogAutoConfiguration {
 }

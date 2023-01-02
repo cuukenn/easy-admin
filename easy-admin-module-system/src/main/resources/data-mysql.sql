@@ -31,7 +31,8 @@ VALUES (1, -1, '系统管理', 'setting', 0, 'system', null, null, 0, true, 0, -
        (14, -1, '基础设施', 'officeBuilding', 0, 'infra', null, null, 0, true, 0, -1, -1, now(), now()),
        (15, 14, '接口列表', 'document', 0, 'api', 'infra/api', null, 1, true, 0, -1, -1, now(), now()),
        (16, 1, '日志管理', 'document', 4, 'log', null, null, 0, true, 0, -1, -1, now(), now()),
-       (17, 16, '日志级别', 'IceCreamSquare', 0, 'level', 'system/log/level', null, 1, true, 0, -1, -1, now(), now());
+       (17, 16, '日志级别', 'IceCreamSquare', 0, 'level', 'system/log/level', null, 1, true, 0, -1, -1, now(), now()),
+       (18, 16, 'API操作记录', 'IceCreamSquare', 0, 'operation', 'system/log/operation', null, 1, true, 0, -1, -1, now(), now());
 
 INSERT INTO sys_role_menu(`role_id`, `menu_id`)
 VALUES (2, 1),

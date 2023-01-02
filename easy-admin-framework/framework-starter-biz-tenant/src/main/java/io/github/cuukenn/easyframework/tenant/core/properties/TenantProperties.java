@@ -15,7 +15,7 @@
  */
 package io.github.cuukenn.easyframework.tenant.core.properties;
 
-import io.github.cuukenn.easyframework.core.EasyFrameworkConstant;
+import io.github.cuukenn.easyframework.core.constants.EasyFrameworkConstant;
 import io.github.cuukenn.easyframework.tenant.core.aop.properties.TenantAopProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;

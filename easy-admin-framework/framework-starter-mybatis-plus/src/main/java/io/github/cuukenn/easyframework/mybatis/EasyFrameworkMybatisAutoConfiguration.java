@@ -16,9 +16,11 @@
 package io.github.cuukenn.easyframework.mybatis;
 
 import io.github.cuukenn.easyframework.core.api.CurrentUserService;
+import io.github.cuukenn.easyframework.core.constants.AutoConfigurationOrderConstant;
 import io.github.cuukenn.easyframework.mybatis.core.configure.MyBatisPlusConfigure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +31,7 @@ import org.springframework.context.annotation.Import;
  */
 @Configuration(proxyBeanMethods = false)
 @Import(value = MyBatisPlusConfigure.class)
+@AutoConfigureOrder(AutoConfigurationOrderConstant.MYBATIS_PLUS)
 public class EasyFrameworkMybatisAutoConfiguration {
 	private static final Logger logger = LoggerFactory.getLogger(EasyFrameworkMybatisAutoConfiguration.class);
 

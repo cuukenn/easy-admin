@@ -15,7 +15,7 @@
  */
 package io.github.cuukenn.easyframework.security.properties;
 
-import io.github.cuukenn.easyframework.core.EasyFrameworkConstant;
+import io.github.cuukenn.easyframework.core.constants.EasyFrameworkConstant;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import static io.github.cuukenn.easyframework.security.properties.SecurityProperties.PREFIX;

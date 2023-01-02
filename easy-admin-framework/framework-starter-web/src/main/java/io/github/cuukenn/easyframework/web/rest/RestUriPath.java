@@ -27,6 +27,15 @@ public interface RestUriPath {
 	String getPrefix();
 
 	/**
+	 * 获取前缀匹配
+	 *
+	 * @return 获取路由前缀
+	 */
+	default String getPrefixPattern() {
+		return getPrefix() + "/**";
+	}
+
+	/**
 	 * 获取rest前缀pattern
 	 *
 	 * @return pattern

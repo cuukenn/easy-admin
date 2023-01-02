@@ -15,7 +15,7 @@
  */
 package io.github.cuukenn.easyframework.captcha.core.properties;
 
-import io.github.cuukenn.easyframework.core.EasyFrameworkConstant;
+import io.github.cuukenn.easyframework.core.constants.EasyFrameworkConstant;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.time.Duration;

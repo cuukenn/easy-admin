@@ -119,4 +119,9 @@ public class ApiResult<T> implements IResult {
 	public void setData(T data) {
 		this.data = data;
 	}
+
+	@Override
+	public String toString() {
+		return "ApiResult{" + "code=" + code + ", message='" + message + '\'' + ", data=" + data + '}';
+	}
 }

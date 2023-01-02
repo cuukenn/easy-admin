@@ -13,21 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.cuukenn.easyframework.core;
+package io.github.cuukenn.easyadmin.module.system.dao.repository;
+
+import io.github.cuukenn.easyadmin.module.system.dao.OperationLogPo;
+import io.github.cuukenn.easyframework.jpa.dao.repository.BaseRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author changgg
  */
-public final class EasyFrameworkConstant {
-	private EasyFrameworkConstant() {
-	}
-
-	/**
-	 * 名称
-	 */
-	public static final String NAME = "easyframework";
-	/**
-	 * 配置前缀
-	 */
-	public static final String PROPERTIED_PREFIX = NAME + ".";
+@Repository
+public interface OperationRepository extends BaseRepository<OperationLogPo> {
 }
